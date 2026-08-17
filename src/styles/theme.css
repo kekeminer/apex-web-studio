@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #0a1633;
+    --color-night: #0a1633;
+    --color-white: #ffffff;
+  }
+
+  html.dark {
+    --bg-color: #0a1633;
+    --text-color: #ffffff;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Manrope Variable', sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk Variable', sans-serif;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono Variable', monospace;
+  }
+}
