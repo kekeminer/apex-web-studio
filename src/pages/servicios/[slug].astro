@@ -1,0 +1,170 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+import { ArrowLeft, CheckCircle2, HelpCircle, ArrowRight } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const servicios = await getCollection('servicios');
+  return servicios.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: CollectionEntry<'servicios'>;
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+const { title, description, benefits, process, faq } = service.data;
+
+const allServices = await getCollection('servicios');
+const otherServices = allServices
+  .filter((s) => s.id !== service.id)
+  .slice(0, 3);
+---
+
+<Base title={`${title} | Apex Web Studio`} description={description}>
+  <!-- Hero Section of Service -->
+  <section class="py-16 md:py-24 border-b border-[var(--border-color)] bg-[var(--card-bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a
+        href="/#servicios"
+        class="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text)] transition-colors mb-8"
+      >
+        <ArrowLeft class="w-4 h-4" />
+        <span>Volver a todos los servicios</span>
+      </a>
+
+      <div class="max-w-3xl">
+        <Badge class="mb-4">Servicio Especializado</Badge>
+        <h1 class="font-heading font-extrabold text-4xl sm:text-6xl text-[var(--text)] tracking-tight mb-6">
+          {title}
+        </h1>
+        <p class="text-lg sm:text-xl text-[var(--text-muted)] leading-relaxed mb-8">
+          {description}
+        </p>
+        <Button href="/#contacto" variant="primary" size="lg">
+          <span>Solicitar consulta para este servicio</span>
+          <ArrowRight class="w-5 h-5" />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits & Content Section -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Main Column: Body MDX Content & Process -->
+        <div class="lg:col-span-2 space-y-16">
+          <!-- MDX Rendered Content -->
+          <div class="prose dark:prose-invert max-w-none text-[var(--text)] leading-relaxed font-sans text-base">
+            <Content />
+          </div>
+
+          <!-- Process / Methodology -->
+          <div>
+            <h2 class="font-heading font-bold text-2xl sm:text-3xl text-[var(--text)] mb-8">
+              Metodología de Trabajo
+            </h2>
+            <div class="space-y-6">
+              {
+                process.map((step) => (
+                  <Card hover={false} class="flex flex-col sm:flex-row gap-6 items-start">
+                    <span class="font-mono font-bold text-2xl text-[var(--text)] opacity-40 px-3 py-1 border border-[var(--border-color)] rounded-lg bg-[var(--badge-bg)]">
+                      {step.step}
+                    </span>
+                    <div>
+                      <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-2">
+                        {step.title}
+                      </h3>
+                      <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </Card>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- FAQ Section -->
+          {
+            faq && faq.length > 0 && (
+              <div>
+                <h2 class="font-heading font-bold text-2xl sm:text-3xl text-[var(--text)] mb-8 flex items-center gap-3">
+                  <HelpCircle class="w-7 h-7" />
+                  <span>Preguntas Frecuentes</span>
+                </h2>
+                <div class="space-y-4">
+                  {faq.map((item) => (
+                    <Card hover={false}>
+                      <h3 class="font-heading font-semibold text-base text-[var(--text)] mb-2">
+                        {item.question}
+                      </h3>
+                      <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+        </div>
+
+        <!-- Sidebar Column: Benefits & Related Services -->
+        <div class="space-y-8">
+          <!-- Benefits Card -->
+          <Card hover={false} class="border-2">
+            <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-6">
+              Beneficios Clave
+            </h3>
+            <ul class="space-y-4">
+              {
+                benefits.map((benefit) => (
+                  <li class="flex items-start gap-3 text-sm text-[var(--text)]">
+                    <CheckCircle2 class="w-5 h-5 text-[var(--text)] opacity-80 flex-shrink-0 mt-0.5" />
+                    <span>{benefit}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="pt-6 mt-6 border-t border-[var(--border-color)]">
+              <Button href="/#contacto" variant="primary" size="md" class="w-full">
+                Solicitar Presupuesto
+              </Button>
+            </div>
+          </Card>
+
+          <!-- Other Services Card -->
+          <Card hover={false}>
+            <h3 class="font-heading font-bold text-base text-[var(--text)] mb-4">
+              Otros Servicios
+            </h3>
+            <ul class="space-y-3">
+              {
+                otherServices.map((other) => (
+                  <li>
+                    <a
+                      href={`/servicios/${other.id}`}
+                      class="text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center justify-between group"
+                    >
+                      <span>{other.data.title}</span>
+                      <ArrowRight class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

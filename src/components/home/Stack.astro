@@ -1,0 +1,86 @@
+---
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import { Layers, Terminal, Cpu, Sparkles, Cloud, GitBranch } from 'lucide-astro';
+
+const techStack = [
+  {
+    name: 'Astro 5',
+    category: 'Framework Core',
+    description: 'Arquitectura Islands de Cero-JavaScript por defecto para cargas estáticas ultra-optimizadas.',
+    icon: Layers,
+  },
+  {
+    name: 'Tailwind CSS v4',
+    category: 'Estilos & Vite Plugin',
+    description: 'Compilación instantánea en motor CSS moderno con sistema de tokens estrictos.',
+    icon: Sparkles,
+  },
+  {
+    name: 'TypeScript',
+    category: 'Lenguaje & Tipado',
+    description: 'Código tipado en modo estricto para máxima robustez y prevención de errores en runtime.',
+    icon: Terminal,
+  },
+  {
+    name: 'GSAP & Lenis',
+    category: 'Animación & Motion',
+    description: 'Interacciones de alto impacto en GPU y desplazamiento fluido adaptable a accesibilidad.',
+    icon: Cpu,
+  },
+  {
+    name: 'Vercel / Cloudflare',
+    category: 'Edge Infrastructure',
+    description: 'Despliegue global descentralizado en CDN con respuesta inferior a 50 milisegundos.',
+    icon: Cloud,
+  },
+  {
+    name: 'GitHub Actions',
+    category: 'CI/CD Pipeline',
+    description: 'Integración continua automatizada con auditorías estrictas de linting y build previa al despliegue.',
+    icon: GitBranch,
+  },
+];
+---
+
+<section id="stack" class="py-24 border-t border-[var(--border-color)] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div data-animate="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+      <Badge class="mb-4">Stack Tecnológico Senior</Badge>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
+        Tecnología Moderna Sin Deuda Técnica
+      </h2>
+      <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
+        Seleccionamos rigurosamente cada herramienta del ecosistema web para garantizar la velocidad, mantenibilidad e invariabilidad de tu sitio.
+      </p>
+    </div>
+
+    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        techStack.map((tech) => {
+          const IconComp = tech.icon;
+          return (
+            <Card class="flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-10 h-10 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)]">
+                    <IconComp class="w-5 h-5" />
+                  </div>
+                  <span class="text-xs font-mono text-[var(--text-subtle)] uppercase">
+                    {tech.category}
+                  </span>
+                </div>
+                <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-2">
+                  {tech.name}
+                </h3>
+                <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+                  {tech.description}
+                </p>
+              </div>
+            </Card>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

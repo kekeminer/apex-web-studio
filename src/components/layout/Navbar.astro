@@ -1,0 +1,121 @@
+---
+import ThemeToggle from '../ui/ThemeToggle.astro';
+import Button from '../ui/Button.astro';
+import { Menu, X } from 'lucide-astro';
+
+const navLinks = [
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#stack', label: 'Stack' },
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#proyectos', label: 'Proyectos' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-[var(--border-color)] bg-[var(--navbar-bg)] backdrop-blur-md"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-current rounded-lg p-1" aria-label="Apex Web Studio Inicio">
+      <img src="/logo.png" alt="Apex Web Studio Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
+      <span class="font-heading font-bold text-xl tracking-tight text-[var(--text)] hidden sm:inline-block">
+        APEX <span class="font-light opacity-80 text-sm tracking-widest block text-xs">WEB STUDIO</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors focus:outline-none focus:ring-2 focus:ring-current rounded-md px-2 py-1"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Action Controls -->
+    <div class="hidden md:flex items-center gap-4">
+      <ThemeToggle />
+      <Button href="/#contacto" variant="primary" size="sm">
+        Consulta gratuita
+      </Button>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="flex items-center gap-3 md:hidden">
+      <ThemeToggle />
+      <button
+        id="mobile-menu-button"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        class="p-2 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text)] focus:outline-none focus:ring-2"
+      >
+        <Menu id="icon-menu" class="w-6 h-6" />
+        <X id="icon-close" class="w-6 h-6 hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-b border-[var(--border-color)] bg-[var(--bg)] px-6 py-6 transition-all"
+  >
+    <nav class="flex flex-col gap-4">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link text-base font-medium text-[var(--text)] py-2 border-b border-[var(--border-color)] opacity-90"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <div class="pt-4">
+        <Button href="/#contacto" variant="primary" size="md" class="w-full">
+          Consulta gratuita
+        </Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupNavbar() {
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+
+    if (!btn || !menu || !iconMenu || !iconClose) return;
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('hidden');
+      iconMenu.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+
+    const links = document.querySelectorAll('.mobile-nav-link');
+    links.forEach((l) => {
+      l.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  setupNavbar();
+  document.addEventListener('astro:after-swap', setupNavbar);
+</script>

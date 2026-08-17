@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/ui/Button.astro';
+import Badge from '../components/ui/Badge.astro';
+import { Home, ArrowLeft } from 'lucide-astro';
+---
+
+<Base title="Página No Encontrada (404) | Apex Web Studio">
+  <section class="min-h-[75vh] flex items-center justify-center py-20">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <Badge class="mb-6 font-mono text-sm">Error 404</Badge>
+      <h1 class="font-heading font-extrabold text-5xl sm:text-7xl text-[var(--text)] tracking-tight mb-6">
+        Página No Encontrada
+      </h1>
+      <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed mb-10">
+        La ruta que intentas visitar no existe o ha sido movida a una nueva ubicación en nuestro servidor.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="/" variant="primary" size="lg">
+          <Home class="w-5 h-5" />
+          <span>Volver al Inicio</span>
+        </Button>
+        <Button href="/#contacto" variant="secondary" size="lg">
+          <ArrowLeft class="w-5 h-5" />
+          <span>Ir a Contacto</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+</Base>

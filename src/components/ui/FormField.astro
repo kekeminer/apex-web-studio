@@ -1,0 +1,90 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'select' | 'textarea' | 'checkbox';
+  required?: boolean;
+  placeholder?: string;
+  options?: { value: string; label: string }[];
+  rows?: number;
+  class?: string;
+}
+
+const {
+  label,
+  name,
+  type = 'text',
+  required = false,
+  placeholder = '',
+  options = [],
+  rows = 4,
+  class: className = '',
+} = Astro.props;
+
+const fieldId = `field-${name}`;
+const errorId = `error-${name}`;
+---
+
+<div class={`flex flex-col gap-2 ${className}`}>
+  {
+    type !== 'checkbox' && (
+      <label for={fieldId} class="text-sm font-medium text-[var(--text)] flex items-center justify-between">
+        <span>{label} {required && <span class="text-xs opacity-70">*</span>}</span>
+      </label>
+    )
+  }
+
+  {
+    type === 'textarea' ? (
+      <textarea
+        id={fieldId}
+        name={name}
+        required={required}
+        rows={rows}
+        placeholder={placeholder}
+        aria-describedby={errorId}
+        class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--text)] transition-all resize-y"
+      />
+    ) : type === 'select' ? (
+      <select
+        id={fieldId}
+        name={name}
+        required={required}
+        aria-describedby={errorId}
+        class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--text)] transition-all appearance-none cursor-pointer"
+      >
+        <option value="" disabled selected>{placeholder || 'Selecciona una opción'}</option>
+        {options.map((opt) => (
+          <option value={opt.value} class="bg-[var(--bg)] text-[var(--text)]">
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    ) : type === 'checkbox' ? (
+      <div class="flex items-start gap-3 mt-1">
+        <input
+          type="checkbox"
+          id={fieldId}
+          name={name}
+          required={required}
+          aria-describedby={errorId}
+          class="mt-1 w-5 h-5 rounded border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text)] focus:ring-2 focus:ring-[var(--text)] cursor-pointer"
+        />
+        <label for={fieldId} class="text-sm text-[var(--text-muted)] cursor-pointer select-none">
+          {label} {required && <span class="text-xs opacity-70">*</span>}
+        </label>
+      </div>
+    ) : (
+      <input
+        type={type}
+        id={fieldId}
+        name={name}
+        required={required}
+        placeholder={placeholder}
+        aria-describedby={errorId}
+        class="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--text)] transition-all"
+      />
+    )
+  }
+  <span id={errorId} class="text-xs text-[var(--text)] hidden" role="alert"></span>
+</div>

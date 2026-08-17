@@ -1,0 +1,140 @@
+---
+import { Instagram, Video, ArrowUpRight, Mail } from 'lucide-astro';
+
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#stack', label: 'Stack' },
+  { href: '/#nosotros', label: 'Nosotros' },
+  { href: '/#proyectos', label: 'Proyectos' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+
+const servicesLinks = [
+  { href: '/servicios/desarrollo-web', label: 'Desarrollo Web High-End' },
+  { href: '/servicios/tiendas-ecommerce', label: 'Tiendas E-commerce' },
+  { href: '/servicios/aplicaciones-web', label: 'Aplicaciones Web Custom' },
+  { href: '/servicios/seo-y-rendimiento', label: 'SEO Técnico & Rendimiento' },
+  { href: '/servicios/mantenimiento-y-soporte', label: 'Mantenimiento & Soporte' },
+];
+
+const socialLinks = [
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/apex_studioweb/',
+    icon: Instagram,
+  },
+  {
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@apex_studioweb',
+    icon: Video,
+  },
+];
+---
+
+<footer class="border-t border-[var(--border-color)] bg-[var(--bg)] text-[var(--text)] transition-colors pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <!-- Col 1: Brand -->
+      <div class="flex flex-col gap-4">
+        <a href="/" class="flex items-center gap-3 group focus:outline-none" aria-label="Apex Web Studio Inicio">
+          <img src="/logo.png" alt="Apex Web Studio Logo" class="h-10 w-auto object-contain" />
+          <span class="font-heading font-bold text-xl tracking-tight text-[var(--text)]">
+            APEX <span class="font-light opacity-80 text-xs tracking-widest block">WEB STUDIO</span>
+          </span>
+        </a>
+        <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+          Estudio de arquitectura y desarrollo web de alto rendimiento. Creamos experiencias digitales a medida libres de fricción.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          {
+            socialLinks.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Sigue a Apex Web Studio en ${social.name}`}
+                  class="p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-all duration-200 hover:scale-105"
+                >
+                  <IconComponent class="w-5 h-5" />
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+
+      <!-- Col 2: Servicios -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm tracking-wider uppercase mb-4 text-[var(--text)]">
+          Servicios
+        </h3>
+        <ul class="flex flex-col gap-2.5">
+          {
+            servicesLinks.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors inline-flex items-center gap-1 group"
+                >
+                  <span>{item.label}</span>
+                  <ArrowUpRight class="w-3.5 h-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Col 3: Navegación -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm tracking-wider uppercase mb-4 text-[var(--text)]">
+          Navegación
+        </h3>
+        <ul class="flex flex-col gap-2.5">
+          {
+            navLinks.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Col 4: Contacto Técnico -->
+      <div>
+        <h3 class="font-heading font-semibold text-sm tracking-wider uppercase mb-4 text-[var(--text)]">
+          Soporte Técnico
+        </h3>
+        <p class="text-sm text-[var(--text-muted)] mb-4 leading-relaxed">
+          ¿Tienes un proyecto en mente o necesitas asistencia directa con tu plataforma?
+        </p>
+        <a
+          href="mailto:wbtech.agency@gmail.com"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] text-sm font-medium text-[var(--text)] transition-all"
+        >
+          <Mail class="w-4 h-4" />
+          <span>wbtech.agency@gmail.com</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-subtle)]">
+      <p>© {currentYear} Apex Web Studio. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-6">
+        <span>Astro 5 & Tailwind CSS v4</span>
+        <span>WCAG AA Compliant</span>
+      </div>
+    </div>
+  </div>
+</footer>

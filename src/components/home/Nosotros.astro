@@ -1,0 +1,68 @@
+---
+import Badge from '../ui/Badge.astro';
+import Card from '../ui/Card.astro';
+import { ShieldCheck, Target, Award, Users } from 'lucide-astro';
+
+const highlights = [
+  {
+    title: 'Filosofía Cero Deuda',
+    description: 'Escribimos código limpio, tipado y documentado con estándares de producción desde la primera entrega.',
+    icon: Target,
+  },
+  {
+    title: 'Rendimiento Incomprometible',
+    description: 'Cada milisegundo cuenta. Optimizamos activos y renderizado para asegurar métricas en verde.',
+    icon: Award,
+  },
+  {
+    title: 'Accesibilidad Universal',
+    description: 'Diseñamos interfaces inclusivas que cumplen estrictamente con la normativa WCAG 2.1 Nivel AA.',
+    icon: Users,
+  },
+  {
+    title: 'Acompañamiento Estratégico',
+    description: 'Trabajamos en estrecha colaboración para alinear el desarrollo técnico con tus objetivos de negocio.',
+    icon: ShieldCheck,
+  },
+];
+---
+
+<section id="nosotros" class="py-24 border-t border-[var(--border-color)] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+      <div data-animate="fade-up">
+        <Badge class="mb-4">Identidad & Visión</Badge>
+        <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
+          Apex Web Studio: Ingeniería Digital Sin Concesiones
+        </h2>
+        <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed mb-6">
+          Somos un estudio enfocado en la creación de productos web de alta gama. Desafiamos la mediocridad del software masivo construyendo sitios estáticos ultra-rápidos que destacan estéticamente y convierten en resultados tangibles.
+        </p>
+        <p class="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+          Nuestra metodología combina la destreza arquitectónica frontend con un estricto control de calidad, asegurando que cada plataforma sea una obra de arte digital funcional.
+        </p>
+      </div>
+
+      <div data-animate="stagger" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {
+          highlights.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <Card class="flex flex-col justify-start">
+                <div class="w-10 h-10 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] mb-4">
+                  <IconComponent class="w-5 h-5" />
+                </div>
+                <h3 class="font-heading font-bold text-base text-[var(--text)] mb-2">
+                  {item.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                  {item.description}
+                </p>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>

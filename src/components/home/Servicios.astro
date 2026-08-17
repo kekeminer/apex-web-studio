@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+import { Code2, ShoppingCart, Cpu, Zap, ShieldCheck, ArrowRight } from 'lucide-astro';
+
+const allServices = await getCollection('servicios');
+const services = allServices.sort((a, b) => a.data.order - b.data.order);
+
+const iconMap = {
+  Code2,
+  ShoppingCart,
+  Cpu,
+  Zap,
+  ShieldCheck,
+};
+---
+
+<section id="servicios" class="py-24 border-t border-[var(--border-color)] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div data-animate="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+      <Badge class="mb-4">Capacidades Técnicas</Badge>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
+        Soluciones Web de Alto Rendimiento
+      </h2>
+      <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
+        Diseñamos y construimos activos digitales con arquitectura estricta orientada a escalar tu presencia de marca sin cuellos de botella.
+      </p>
+    </div>
+
+    <!-- Dynamic Grid consuming Content Collections -->
+    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map((service) => {
+          const IconComponent = iconMap[service.data.icon as keyof typeof iconMap] || Code2;
+          return (
+            <Card class="flex flex-col justify-between group">
+              <div>
+                <div class="w-12 h-12 rounded-xl border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center mb-6 text-[var(--text)] group-hover:scale-110 transition-transform">
+                  <IconComponent class="w-6 h-6" />
+                </div>
+                <h3 class="font-heading font-semibold text-xl text-[var(--text)] mb-3">
+                  {service.data.title}
+                </h3>
+                <p class="text-sm text-[var(--text-muted)] leading-relaxed mb-6">
+                  {service.data.description}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-[var(--border-color)] flex items-center justify-between">
+                <a
+                  href={`/servicios/${service.id}`}
+                  class="text-xs font-mono font-medium text-[var(--text)] hover:underline inline-flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-current rounded"
+                >
+                  <span>Ver detalles de servicio</span>
+                  <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </Card>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

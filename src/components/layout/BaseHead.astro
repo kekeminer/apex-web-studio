@@ -1,0 +1,94 @@
+---
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/jetbrains-mono';
+import '../../styles/theme.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  type?: string;
+}
+
+const {
+  title = 'Apex Web Studio | Desarrollo Web High-End & Software A Medida',
+  description = 'Estudio de desarrollo web especializado en sitios ultrarrápidos con Astro 5, Tailwind CSS v4, animaciones GSAP y optimización de conversión.',
+  image = '/logo.png',
+  canonicalURL = Astro.url,
+  type = 'website',
+} = Astro.props;
+
+const siteName = 'Apex Web Studio';
+const formattedTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+
+// JSON-LD Organization & Website Schema
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: siteName,
+  url: 'https://apexwebstudio.com',
+  logo: 'https://apexwebstudio.com/logo.png',
+  image: 'https://apexwebstudio.com/logo.png',
+  description: description,
+  email: 'wbtech.agency@gmail.com',
+  sameAs: [
+    'https://www.instagram.com/apex_studioweb/',
+    'https://www.tiktok.com/@apex_studioweb',
+  ],
+  priceRange: '$$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'ES',
+  },
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/logo.png" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Theme Color Double Meta for Light / Dark mode -->
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0A1633" media="(prefers-color-scheme: dark)" />
+
+<!-- Primary Meta Tags -->
+<title>{formattedTitle}</title>
+<meta name="title" content={formattedTitle} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={formattedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={formattedTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- Anti-FOUC Theme Script -->
+<script is:inline>
+  (function () {
+    const storedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>
+
+<!-- Structured Data Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
