@@ -57,9 +57,9 @@ const faqs = [
         faqs.map((faq) => (
           <Card hover={false} class="p-0 border border-[var(--border-color)] overflow-hidden">
             <details class="group cursor-pointer">
-              <summary class="w-full min-h-[50px] py-3 px-5 flex items-center justify-between font-heading font-semibold text-sm sm:text-base text-[var(--text)] select-none list-none focus:outline-none focus:ring-2 focus:ring-current">
+              <summary class="w-full min-h-[38px] py-2 px-4 flex items-center justify-between font-heading font-semibold text-xs sm:text-sm text-[var(--text)] select-none list-none focus:outline-none focus:ring-2 focus:ring-current">
                 <span>{faq.question}</span>
-                <ChevronDown class="w-4 h-4 opacity-70 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-4" />
+                <ChevronDown class="w-3.5 h-3.5 opacity-70 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-3" />
               </summary>
               <div class="px-5 pb-4 pt-2 text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] bg-[var(--card-hover-bg)]">
                 <p>{faq.answer}</p>
