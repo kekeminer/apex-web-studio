@@ -1,18 +1,10 @@
 ---
 import Button from '../ui/Button.astro';
-import Badge from '../ui/Badge.astro';
-import { ArrowRight, Sparkles } from 'lucide-astro';
+import { ArrowRight } from 'lucide-astro';
 ---
 
-<section class="relative min-h-[85vh] flex items-center justify-start pt-12 pb-20 overflow-hidden bg-[var(--bg)]">
+<section class="relative min-h-[70vh] flex items-center justify-start pt-12 pb-16 overflow-hidden bg-[var(--bg)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left w-full">
-    <div data-animate="fade-up" class="inline-block mb-6">
-      <Badge class="gap-2 py-1.5 px-4 text-xs font-mono">
-        <Sparkles class="w-3.5 h-3.5" />
-        <span>Estudio de Arquitectura Web & High-End Performance</span>
-      </Badge>
-    </div>
-
     <!-- H1 Headline -->
     <h1
       data-animate="fade-up"
@@ -30,7 +22,7 @@ import { ArrowRight, Sparkles } from 'lucide-astro';
     </p>
 
     <!-- CTAs -->
-    <div data-animate="fade-up" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4 mb-16">
+    <div data-animate="fade-up" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4">
       <Button href="#contacto" variant="primary" size="lg" class="w-full sm:w-auto shadow-lg">
         <span>Iniciar Proyecto</span>
         <ArrowRight class="w-5 h-5" />
@@ -38,26 +30,6 @@ import { ArrowRight, Sparkles } from 'lucide-astro';
       <Button href="#proyectos" variant="secondary" size="lg" class="w-full sm:w-auto">
         Ver Casos de Éxito
       </Button>
-    </div>
-
-    <!-- Trust Metrics -->
-    <div data-animate="fade-up" class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-[var(--border-color)] max-w-4xl">
-      <div class="flex flex-col items-start">
-        <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">99+</span>
-        <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Lighthouse Score</span>
-      </div>
-      <div class="flex flex-col items-start">
-        <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">&lt; 0.5s</span>
-        <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Tiempo de Carga</span>
-      </div>
-      <div class="flex flex-col items-start">
-        <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">100%</span>
-        <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">WCAG AA Standard</span>
-      </div>
-      <div class="flex flex-col items-start">
-        <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">0</span>
-        <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Dependencias Innecesarias</span>
-      </div>
     </div>
   </div>
 </section>

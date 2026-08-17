@@ -9,13 +9,31 @@ import { Sun, Moon } from 'lucide-astro';
   class="p-2.5 rounded-full border transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-current"
   style="background-color: var(--card-bg); border-color: var(--border-color); color: var(--text);"
 >
-  <span class="dark:hidden flex items-center justify-center" title="Modo Claro Activo">
+  <span class="icon-sun items-center justify-center" title="Modo Claro Activo">
     <Sun class="w-5 h-5" />
   </span>
-  <span class="hidden dark:flex items-center justify-center" title="Modo Oscuro Activo">
+  <span class="icon-moon items-center justify-center" title="Modo Oscuro Activo">
     <Moon class="w-5 h-5" />
   </span>
 </button>
+
+<style>
+  /* Light Mode: Show Sun, Hide Moon */
+  .icon-sun {
+    display: flex;
+  }
+  .icon-moon {
+    display: none;
+  }
+
+  /* Dark Mode: Hide Sun, Show Moon */
+  :global(html.dark) .icon-sun {
+    display: none;
+  }
+  :global(html.dark) .icon-moon {
+    display: flex;
+  }
+</style>
 
 <script>
   function setupThemeToggle() {
