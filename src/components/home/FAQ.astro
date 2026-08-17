@@ -1,0 +1,73 @@
+---
+import Badge from '../ui/Badge.astro';
+import Card from '../ui/Card.astro';
+import { ChevronDown } from 'lucide-astro';
+
+const faqs = [
+  {
+    question: '¿El precio incluye dominio y hosting?',
+    answer: 'El desarrollo no incluye el costo del dominio ni del hosting, que se contratan por separado. Podemos asesorarte y gestionar su configuración si lo necesitás.',
+  },
+  {
+    question: '¿Cuánto tarda un proyecto?',
+    answer: 'Depende del alcance. Una landing puede estar lista en 7 a 10 días; los proyectos más grandes se entregan con un cronograma acordado.',
+  },
+  {
+    question: '¿Cómo se realiza el pago?',
+    answer: 'Trabajamos con un esquema 40-30-30: 40% al iniciar el proyecto, 30% al entregar el diseño y la funcionalidad, y 30% al publicar el sitio en la web. Aceptamos Mercado Pago, transferencia bancaria y criptomoneda.',
+  },
+  {
+    question: '¿La consulta inicial tiene costo?',
+    answer: 'No, la primera consulta para conocer tu proyecto es sin cargo. El resto de los servicios se presupuesta según el alcance.',
+  },
+  {
+    question: '¿Los sitios se adaptan a celulares?',
+    answer: 'Sí, todo lo que desarrollamos es responsive y se adapta a móviles, tablets y escritorio.',
+  },
+  {
+    question: '¿Ofrecen mantenimiento posterior?',
+    answer: 'Sí, contamos con planes de mantenimiento mensual en tres niveles: Básico, Pro y Business.',
+  },
+  {
+    question: '¿Puedo pedir cambios después de la entrega?',
+    answer: 'Sí, dentro de lo acordado en el presupuesto. Los cambios fuera del alcance se cotizan aparte.',
+  },
+  {
+    question: '¿Trabajan con clientes fuera de Argentina?',
+    answer: 'Sí, trabajamos de forma remota con clientes de Argentina y del mundo.',
+  },
+];
+---
+
+<section id="faq" class="py-24 border-t border-[var(--border-color)] relative bg-[var(--bg)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div data-animate="fade-up" class="text-left max-w-3xl mb-16">
+      <Badge class="mb-4">Respuestas Rápidas</Badge>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
+        Despeja tus dudas sobre metodología, formas de pago, plazos y condiciones de desarrollo antes de iniciar tu proyecto.
+      </p>
+    </div>
+
+    <!-- Accordion Container -->
+    <div data-animate="fade-up" class="max-w-4xl space-y-4 text-left">
+      {
+        faqs.map((faq) => (
+          <Card hover={false} class="p-0 border border-[var(--border-color)] overflow-hidden">
+            <details class="group cursor-pointer">
+              <summary class="w-full p-6 flex items-center justify-between font-heading font-semibold text-base sm:text-lg text-[var(--text)] select-none list-none focus:outline-none focus:ring-2 focus:ring-current">
+                <span>{faq.question}</span>
+                <ChevronDown class="w-5 h-5 opacity-70 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-4" />
+              </summary>
+              <div class="px-6 pb-6 pt-2 text-sm text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)] bg-[var(--card-hover-bg)]">
+                <p>{faq.answer}</p>
+              </div>
+            </details>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</section>

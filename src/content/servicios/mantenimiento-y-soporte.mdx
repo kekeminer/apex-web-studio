@@ -1,19 +1,34 @@
 ---
 title: "Mantenimiento Continuo & Soporte Evolutivo"
 description: "Planes de acompañamiento técnico para mantener tu plataforma actualizada, segura, con copias de seguridad activas y mejoras contínuas."
-icon: "ShieldCheck"
 order: 5
-precio: "Desde USD 80 / mes"
-modalidad: "Planes: Básico USD 80, Pro USD 150, Business USD 250"
-incluye:
-  - "Actualizaciones"
-  - "Copias de seguridad"
-  - "Soporte técnico"
-benefits:
-  - "Monitoreo de disponibilidad 24/7 y respuesta prioritaria"
-  - "Actualización constante de dependencias y parches de seguridad"
-  - "Backups automatizados en la nube"
-  - "Horas mensuales dedicas a nuevas funcionalidades"
+planes:
+  basico:
+    precio: "USD 80 / mes"
+    descripcion: "Mantenimiento esencial para asegurar el correcto funcionamiento."
+    incluye:
+      - "Actualizaciones"
+      - "Copias de seguridad"
+      - "Soporte técnico"
+  pro:
+    precio: "USD 150 / mes"
+    descripcion: "Acompañamiento integral con tiempo dedicado a mejoras."
+    recomendado: true
+    incluye:
+      - "Actualizaciones mensuales de dependencias"
+      - "Copias de seguridad semanales en la nube"
+      - "Monitoreo 24/7 de disponibilidad"
+      - "Soporte técnico prioritario (Respuesta < 4h)"
+      - "2 horas de mejoras mensuales"
+  business:
+    precio: "USD 250 / mes"
+    descripcion: "Soporte crítico continuo y desarrollo evolutivo constante."
+    incluye:
+      - "Actualizaciones continuas e inmediatas"
+      - "Copias de seguridad diarias automatizadas"
+      - "Monitoreo en tiempo real con alertas"
+      - "Soporte técnico VIP (Respuesta < 1h)"
+      - "6 horas de desarrollo mensual evolutivo"
 process:
   - step: "01"
     title: "Onboarding Técnico"

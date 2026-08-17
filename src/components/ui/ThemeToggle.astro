@@ -6,14 +6,14 @@ import { Sun, Moon } from 'lucide-astro';
   id="theme-toggle"
   type="button"
   aria-label="Alternar tema claro/oscuro"
-  class="p-2.5 rounded-full border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-current"
+  class="p-2.5 rounded-full border transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-current"
   style="background-color: var(--card-bg); border-color: var(--border-color); color: var(--text);"
 >
-  <span class="dark:hidden flex items-center justify-center">
-    <Moon class="w-5 h-5" />
-  </span>
-  <span class="hidden dark:flex items-center justify-center">
+  <span class="dark:hidden flex items-center justify-center" title="Modo Claro Activo">
     <Sun class="w-5 h-5" />
+  </span>
+  <span class="hidden dark:flex items-center justify-center" title="Modo Oscuro Activo">
+    <Moon class="w-5 h-5" />
   </span>
 </button>
 

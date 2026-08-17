@@ -1,100 +1,32 @@
 ---
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
-import {
-  Layers,
-  Terminal,
-  Cpu,
-  Sparkles,
-  Cloud,
-  GitBranch,
-  Search,
-  TrendingUp,
-  Bug,
-  Gauge,
-  Code,
-  HelpCircle,
-  FileText,
-} from 'lucide-astro';
+import { Layout, Server, Cpu, ShieldCheck } from 'lucide-astro';
 
-const techStack = [
+const stackCategories = [
   {
-    name: 'Astro 5',
-    category: 'Framework Core',
-    description: 'Arquitectura Islands de Cero-JavaScript por defecto para cargas estáticas ultra-optimizadas.',
-    icon: Layers,
+    title: 'Frontend',
+    icon: Layout,
+    description: 'Interfaces interactivas, ultrarrápidas y accesibles.',
+    items: ['Astro', 'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP'],
   },
   {
-    name: 'Tailwind CSS v4',
-    category: 'Estilos & Vite Plugin',
-    description: 'Compilación instantánea en motor CSS moderno con sistema de tokens estrictos.',
-    icon: Sparkles,
+    title: 'Backend',
+    icon: Server,
+    description: 'Arquitectura de servidores, APIs y gestión de datos.',
+    items: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'APIs REST', 'GraphQL'],
   },
   {
-    name: 'TypeScript',
-    category: 'Lenguaje & Tipado',
-    description: 'Código tipado en modo estricto para máxima robustez y prevención de errores en runtime.',
-    icon: Terminal,
-  },
-  {
-    name: 'GSAP & Lenis',
-    category: 'Animación & Motion',
-    description: 'Interacciones de alto impacto en GPU y desplazamiento fluido adaptable a accesibilidad.',
+    title: 'DevOps & Despliegue',
     icon: Cpu,
+    description: 'Infraestructura global, CI/CD y control de versiones.',
+    items: ['Git', 'GitHub', 'GitHub Actions', 'Docker', 'Vercel'],
   },
   {
-    name: 'Vercel / Cloudflare',
-    category: 'Edge Infrastructure',
-    description: 'Despliegue global descentralizado en CDN con respuesta inferior a 50 milisegundos.',
-    icon: Cloud,
-  },
-  {
-    name: 'GitHub Actions',
-    category: 'CI/CD Pipeline',
-    description: 'Integración continua automatizada con auditorías estrictas de linting y build previa al despliegue.',
-    icon: GitBranch,
-  },
-  {
-    name: 'Google Search Console',
-    category: 'SEO & Indexación',
-    description: 'Indexación y monitoreo del sitio en Google.',
-    icon: Search,
-  },
-  {
-    name: 'Semrush',
-    category: 'Investigación SEO',
-    description: 'Investigación de palabras clave y análisis de competencia.',
-    icon: TrendingUp,
-  },
-  {
-    name: 'Screaming Frog',
-    category: 'Auditoría Técnica',
-    description: 'Rastreo y auditoría técnica del sitio.',
-    icon: Bug,
-  },
-  {
-    name: 'PageSpeed Insights',
-    category: 'Métricas Real User',
-    description: 'Medición de rendimiento real.',
-    icon: Gauge,
-  },
-  {
-    name: 'Schema.org y JSON-LD',
-    category: 'Datos Estructurados',
-    description: 'Datos estructurados para resultados enriquecidos.',
-    icon: Code,
-  },
-  {
-    name: 'AnswerThePublic',
-    category: 'Búsqueda de Intención',
-    description: 'Detección de preguntas reales de usuarios.',
-    icon: HelpCircle,
-  },
-  {
-    name: 'llms.txt',
-    category: 'IA Generativa & GEO',
-    description: 'Optimización para motores de inteligencia artificial generativa.',
-    icon: FileText,
+    title: 'Calidad & Rendimiento',
+    icon: ShieldCheck,
+    description: 'Estándares estrictos de código, auditoría y accesibilidad.',
+    items: ['ESLint', 'Prettier', 'Lighthouse', 'WCAG 2.1 AA'],
   },
 ];
 ---
@@ -104,37 +36,42 @@ const techStack = [
     <div data-animate="fade-up" class="text-left max-w-4xl mb-16">
       <Badge class="mb-4">Ecosistema & Herramientas</Badge>
       <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-4">
-        Tecnología Moderna Sin Deuda Técnica
+        Stack Tecnológico Full-Stack Senior
       </h2>
       <p class="text-base sm:text-lg font-medium text-[var(--text)] leading-relaxed mb-4">
-        SEO para buscadores clásicos, AEO para respuestas directas y búsqueda por voz, GEO para motores de IA como ChatGPT, Perplexity y AI Overviews.
+        SEO para buscadores clásicos, AEO para respuestas directas y búsqueda por voz, y GEO para motores de inteligencia artificial como ChatGPT, Perplexity y AI Overviews.
       </p>
       <p class="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
         Seleccionamos rigurosamente cada herramienta del ecosistema web para garantizar la velocidad, mantenibilidad e invariabilidad de tu sitio.
       </p>
     </div>
 
-    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Category Grid -->
+    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {
-        techStack.map((tech) => {
-          const IconComp = tech.icon;
+        stackCategories.map((category) => {
+          const IconComp = category.icon;
           return (
-            <Card class="flex flex-col justify-between">
+            <Card class="flex flex-col justify-between p-6">
               <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="w-10 h-10 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)]">
-                    <IconComp class="w-5 h-5" />
-                  </div>
-                  <span class="text-xs font-mono text-[var(--text-subtle)] uppercase">
-                    {tech.category}
-                  </span>
+                <div class="w-10 h-10 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] mb-4">
+                  <IconComp class="w-5 h-5" />
                 </div>
-                <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-2">
-                  {tech.name}
+                <h3 class="font-heading font-bold text-xl text-[var(--text)] mb-2">
+                  {category.title}
                 </h3>
-                <p class="text-sm text-[var(--text-muted)] leading-relaxed">
-                  {tech.description}
+                <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6">
+                  {category.description}
                 </p>
+
+                <div class="space-y-2 pt-4 border-t border-[var(--border-color)]">
+                  {category.items.map((item) => (
+                    <div class="flex items-center gap-2 text-xs font-mono text-[var(--text)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--text)] opacity-60"></span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Card>
           );

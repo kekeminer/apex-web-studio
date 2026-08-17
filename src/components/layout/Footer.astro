@@ -1,8 +1,6 @@
 ---
 import { Instagram, ArrowUpRight, Mail } from 'lucide-astro';
 
-const currentYear = new Date().getFullYear();
-
 const navLinks = [
   { href: '/#servicios', label: 'Servicios' },
   { href: '/#stack', label: 'Stack' },
@@ -122,12 +120,8 @@ const servicesLinks = [
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-subtle)]">
-      <p>© {currentYear} Apex Web Studio. Todos los derechos reservados.</p>
-      <div class="flex items-center gap-6">
-        <span>Astro 5 & Tailwind CSS v4</span>
-        <span>WCAG AA Compliant</span>
-      </div>
+    <div class="pt-8 border-t border-[var(--border-color)] text-center text-xs text-[var(--text-subtle)]">
+      <p>© 2026 Apex Web Studio. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

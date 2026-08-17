@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
-import { ArrowLeft, CheckCircle2, HelpCircle, ArrowRight, Tag, Check } from 'lucide-astro';
+import { ArrowLeft, HelpCircle, ArrowRight, Check, CreditCard } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const servicios = await getCollection('servicios');
@@ -20,12 +20,18 @@ interface Props {
 
 const { service } = Astro.props;
 const { Content } = await render(service);
-const { title, description, precio, modalidad, incluye, benefits, process, faq } = service.data;
+const { title, description, planes, process, faq } = service.data;
 
 const allServices = await getCollection('servicios');
 const otherServices = allServices
   .filter((s) => s.id !== service.id)
-  .slice(0, 3);
+  .slice(0, 4);
+
+const planList = [
+  { key: 'basico', name: 'Básico', data: planes.basico },
+  { key: 'pro', name: 'Pro', data: planes.pro, recomendado: true },
+  { key: 'business', name: 'Business', data: planes.business },
+];
 ---
 
 <Base title={`${title} | Apex Web Studio`} description={description}>
@@ -49,8 +55,8 @@ const otherServices = allServices
           {description}
         </p>
         <div class="flex flex-wrap items-center gap-4">
-          <Button href="/#contacto" variant="primary" size="lg">
-            <span>Consultar este servicio</span>
+          <Button href="#planes" variant="primary" size="lg">
+            <span>Ver Planes y Precios</span>
             <ArrowRight class="w-5 h-5" />
           </Button>
         </div>
@@ -58,53 +64,97 @@ const otherServices = allServices
     </div>
   </section>
 
-  <!-- Benefits & Content Section -->
+  <!-- Pricing Plans Section -->
+  <section id="planes" class="py-20 border-b border-[var(--border-color)] bg-[var(--bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="max-w-3xl mb-12">
+        <Badge class="mb-4">Planes & Tarifas</Badge>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)] tracking-tight mb-4">
+          Planes Adaptados a Cada Etapa
+        </h2>
+        <p class="text-base text-[var(--text-muted)] leading-relaxed">
+          Selecciona la modalidad que mejor responda a las metas de tu empresa. Todos los desarrollos incluyen código tipado, rendimiento extremo y WCAG 2.1 AA.
+        </p>
+      </div>
+
+      <!-- 3 Plans Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {
+          planList.map((plan) => (
+            <Card
+              hover={false}
+              class={`flex flex-col justify-between relative p-8 ${
+                plan.recomendado
+                  ? 'border-2 border-[var(--text)] shadow-xl bg-[var(--card-hover-bg)]'
+                  : 'border border-[var(--border-color)] bg-[var(--card-bg)]'
+              }`}
+            >
+              <div>
+                {plan.recomendado && (
+                  <div class="absolute -top-3.5 right-6">
+                    <Badge class="bg-[var(--text)] text-[var(--bg)] font-mono text-[10px] uppercase py-0.5 px-3">
+                      Recomendado
+                    </Badge>
+                  </div>
+                )}
+
+                <h3 class="font-heading font-bold text-2xl text-[var(--text)] mb-2">
+                  {plan.name}
+                </h3>
+                <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6 min-h-[36px]">
+                  {plan.data.descripcion}
+                </p>
+
+                <div class="mb-6 pb-6 border-b border-[var(--border-color)]">
+                  <span class="font-heading font-extrabold text-3xl sm:text-4xl text-[var(--text)]">
+                    {plan.data.precio}
+                  </span>
+                </div>
+
+                <h4 class="font-heading font-semibold text-xs tracking-wider uppercase text-[var(--text)] mb-4">
+                  Qué incluye:
+                </h4>
+                <ul class="space-y-3 mb-8">
+                  {plan.data.incluye.map((item) => (
+                    <li class="flex items-start gap-2.5 text-xs font-mono text-[var(--text)]">
+                      <Check class="w-4 h-4 opacity-80 text-[var(--text)] flex-shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Button href="/#contacto" variant={plan.recomendado ? 'primary' : 'outline'} size="md" class="w-full">
+                <span>Elegir plan {plan.name}</span>
+                <ArrowRight class="w-4 h-4" />
+              </Button>
+            </Card>
+          ))
+        }
+      </div>
+
+      <!-- Highlighted 40-30-30 Payment Scheme Callout -->
+      <div class="p-6 rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="w-10 h-10 rounded-xl border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] flex-shrink-0">
+          <CreditCard class="w-5 h-5" />
+        </div>
+        <p class="text-sm font-medium text-[var(--text)] leading-relaxed">
+          <strong>Esquema de pago 40-30-30:</strong> 40% al iniciar el proyecto, 30% al entregar el diseño y la funcionalidad, y 30% al publicar el sitio en la web.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Content & Process Section -->
   <section class="py-20 bg-[var(--bg)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 text-left">
-        <!-- Main Column: Body MDX Content, Pricing Block & Process -->
+        <!-- Main Column: Body MDX Content & Process -->
         <div class="lg:col-span-2 space-y-16">
           <!-- MDX Rendered Content -->
           <div class="prose dark:prose-invert max-w-none text-[var(--text)] leading-relaxed font-sans text-base">
             <Content />
           </div>
-
-          <!-- Highlighted Pricing & Inclusions Card -->
-          <Card hover={false} class="border-2 border-[var(--border-color)] bg-[var(--card-bg)] p-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-[var(--border-color)]">
-              <div>
-                <span class="text-xs font-mono uppercase tracking-wider text-[var(--text-subtle)] block mb-1">
-                  Inversión Estimada
-                </span>
-                <h3 class="font-heading font-extrabold text-3xl text-[var(--text)]">
-                  {precio}
-                </h3>
-              </div>
-              <Badge class="self-start sm:self-center font-mono text-xs gap-1.5 py-1 px-3">
-                <Tag class="w-3.5 h-3.5" />
-                <span>{modalidad}</span>
-              </Badge>
-            </div>
-
-            <h4 class="font-heading font-bold text-base text-[var(--text)] mb-4">
-              ¿Qué incluye este servicio?
-            </h4>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-              {
-                incluye.map((item) => (
-                  <li class="flex items-center gap-2.5 text-sm font-mono text-[var(--text)]">
-                    <Check class="w-4 h-4 opacity-80 text-[var(--text)] flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))
-              }
-            </ul>
-
-            <Button href="/#contacto" variant="primary" size="lg" class="w-full">
-              <span>Consultar Presupuesto</span>
-              <ArrowRight class="w-5 h-5" />
-            </Button>
-          </Card>
 
           <!-- Process / Methodology -->
           <div>
@@ -157,31 +207,8 @@ const otherServices = allServices
           }
         </div>
 
-        <!-- Sidebar Column: Benefits & Related Services -->
+        <!-- Sidebar Column: Other Services -->
         <div class="space-y-8">
-          <!-- Benefits Card -->
-          <Card hover={false} class="border">
-            <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-6">
-              Beneficios Clave
-            </h3>
-            <ul class="space-y-4">
-              {
-                benefits.map((benefit) => (
-                  <li class="flex items-start gap-3 text-sm text-[var(--text)]">
-                    <CheckCircle2 class="w-5 h-5 text-[var(--text)] opacity-80 flex-shrink-0 mt-0.5" />
-                    <span>{benefit}</span>
-                  </li>
-                ))
-              }
-            </ul>
-            <div class="pt-6 mt-6 border-t border-[var(--border-color)]">
-              <Button href="/#contacto" variant="primary" size="md" class="w-full">
-                Consultar
-              </Button>
-            </div>
-          </Card>
-
-          <!-- Other Services Card -->
           <Card hover={false}>
             <h3 class="font-heading font-bold text-base text-[var(--text)] mb-4">
               Otros Servicios
