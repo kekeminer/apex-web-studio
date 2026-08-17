@@ -4,11 +4,8 @@ import Badge from '../ui/Badge.astro';
 import { ArrowRight, Sparkles } from 'lucide-astro';
 ---
 
-<section class="relative min-h-[90vh] flex items-center justify-center pt-12 pb-20 overflow-hidden">
-  <!-- Subtle Background Grid Overlay using CSS opacities strictly in #0A1633 / #FFFFFF -->
-  <div class="absolute inset-0 pointer-events-none opacity-30 dark:opacity-20" style="background-image: radial-gradient(circle at 1px 1px, var(--text) 1px, transparent 0); background-size: 32px 32px;"></div>
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+<section class="relative min-h-[85vh] flex items-center justify-start pt-12 pb-20 overflow-hidden bg-[var(--bg)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left w-full">
     <div data-animate="fade-up" class="inline-block mb-6">
       <Badge class="gap-2 py-1.5 px-4 text-xs font-mono">
         <Sparkles class="w-3.5 h-3.5" />
@@ -19,7 +16,7 @@ import { ArrowRight, Sparkles } from 'lucide-astro';
     <!-- H1 Headline -->
     <h1
       data-animate="fade-up"
-      class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-[var(--text)] max-w-5xl mx-auto leading-[1.1] mb-8"
+      class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight text-[var(--text)] max-w-4xl leading-[1.1] mb-8"
     >
       Ingeniería Web de Precisión y <span class="underline decoration-1 underline-offset-8 decoration-[var(--border-color)]">Diseño Digital Exclusivo</span>
     </h1>
@@ -27,13 +24,13 @@ import { ArrowRight, Sparkles } from 'lucide-astro';
     <!-- Subtitle -->
     <p
       data-animate="fade-up"
-      class="text-lg sm:text-xl text-[var(--text-muted)] max-w-3xl mx-auto leading-relaxed mb-10 font-normal"
+      class="text-lg sm:text-xl text-[var(--text-muted)] max-w-3xl leading-relaxed mb-10 font-normal"
     >
       Transformamos la visión de marcas exigentes en plataformas estáticas ultrarrápidas, accesibles y optimizadas para máxima conversión comercial.
     </p>
 
     <!-- CTAs -->
-    <div data-animate="fade-up" class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+    <div data-animate="fade-up" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4 mb-16">
       <Button href="#contacto" variant="primary" size="lg" class="w-full sm:w-auto shadow-lg">
         <span>Iniciar Proyecto</span>
         <ArrowRight class="w-5 h-5" />
@@ -44,20 +41,20 @@ import { ArrowRight, Sparkles } from 'lucide-astro';
     </div>
 
     <!-- Trust Metrics -->
-    <div data-animate="fade-up" class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-[var(--border-color)] max-w-4xl mx-auto">
-      <div class="flex flex-col items-center">
+    <div data-animate="fade-up" class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-[var(--border-color)] max-w-4xl">
+      <div class="flex flex-col items-start">
         <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">99+</span>
         <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Lighthouse Score</span>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-start">
         <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">&lt; 0.5s</span>
         <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Tiempo de Carga</span>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-start">
         <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">100%</span>
         <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">WCAG AA Standard</span>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-start">
         <span class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)]">0</span>
         <span class="text-xs text-[var(--text-muted)] mt-1 uppercase tracking-wider font-mono">Dependencias Innecesarias</span>
       </div>

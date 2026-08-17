@@ -8,6 +8,9 @@ const serviciosCollection = defineCollection({
     description: z.string(),
     icon: z.string(),
     order: z.number(),
+    precio: z.string(),
+    modalidad: z.string(),
+    incluye: z.array(z.string()),
     benefits: z.array(z.string()),
     process: z.array(
       z.object({

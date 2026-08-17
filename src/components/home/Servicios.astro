@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
-import { Code2, ShoppingCart, Cpu, Zap, ShieldCheck, ArrowRight } from 'lucide-astro';
+import { Code2, ShoppingCart, Cpu, Zap, ShieldCheck, ArrowRight, Tag } from 'lucide-astro';
 
 const allServices = await getCollection('servicios');
 const services = allServices.sort((a, b) => a.data.order - b.data.order);
@@ -18,8 +18,8 @@ const iconMap = {
 
 <section id="servicios" class="py-24 border-t border-[var(--border-color)] relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div data-animate="fade-up" class="text-center max-w-3xl mx-auto mb-16">
-      <Badge class="mb-4">Capacidades Técnicas</Badge>
+    <div data-animate="fade-up" class="text-left max-w-3xl mb-16">
+      <Badge class="mb-4">Capacidades & Tarifas</Badge>
       <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
         Soluciones Web de Alto Rendimiento
       </h2>
@@ -36,15 +36,40 @@ const iconMap = {
           return (
             <Card class="flex flex-col justify-between group">
               <div>
-                <div class="w-12 h-12 rounded-xl border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center mb-6 text-[var(--text)] group-hover:scale-110 transition-transform">
-                  <IconComponent class="w-6 h-6" />
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-12 h-12 rounded-xl border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] group-hover:scale-110 transition-transform">
+                    <IconComponent class="w-6 h-6" />
+                  </div>
+                  <Badge class="font-mono text-xs">
+                    {service.data.precio}
+                  </Badge>
                 </div>
-                <h3 class="font-heading font-semibold text-xl text-[var(--text)] mb-3">
+
+                <h3 class="font-heading font-semibold text-xl text-[var(--text)] mb-2">
                   {service.data.title}
                 </h3>
+                <p class="text-xs font-mono text-[var(--text-subtle)] mb-4 flex items-center gap-1.5">
+                  <Tag class="w-3.5 h-3.5 opacity-70" />
+                  <span>{service.data.modalidad}</span>
+                </p>
                 <p class="text-sm text-[var(--text-muted)] leading-relaxed mb-6">
                   {service.data.description}
                 </p>
+
+                <!-- Included items preview -->
+                <div class="mb-6 space-y-1.5 pt-4 border-t border-[var(--border-color)]">
+                  {service.data.incluye.slice(0, 3).map((item) => (
+                    <div class="flex items-center gap-2 text-xs font-mono text-[var(--text-muted)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--text)] opacity-60"></span>
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                  {service.data.incluye.length > 3 && (
+                    <span class="text-[11px] font-mono text-[var(--text-subtle)] block pt-1">
+                      + {service.data.incluye.length - 3} ítems más incluidos
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div class="pt-4 border-t border-[var(--border-color)] flex items-center justify-between">

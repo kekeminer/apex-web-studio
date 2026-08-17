@@ -1,0 +1,35 @@
+# Apex Web Studio
+
+> Estudio de Arquitectura Web & High-End Performance especializado en la creación de sitios web ultrarrápidos, aplicaciones custom, e-commerce y optimización de conversión.
+
+## Información de la Agencia
+Apex Web Studio desarrolla soluciones digitales con código limpio en TypeScript, Astro 5, Tailwind CSS v4 y animaciones GSAP. Todos los desarrollos cumplen estrictamente con estándares WCAG 2.1 AA de accesibilidad, SEO técnico avanzado y optimización para motores de respuesta generativa (GEO/AEO).
+
+## Servicios Principales y Tarifas
+
+### 1. Desarrollo Web High-End
+- **Precio**: Desde USD 450 (Pago único)
+- **Incluye**: Hasta 6 secciones, diseño responsive, modo claro/oscuro, formulario de contacto, SEO base, entrega estimada en 7 a 10 días.
+
+### 2. Tiendas E-commerce de Alto Rendimiento
+- **Precio**: Desde USD 900 (Pago único)
+- **Incluye**: Catálogo de hasta 50 productos, carrito de compras, integración con pasarela de pagos (Stripe, MercadoPago), panel de administración, entrega estimada en 15 a 20 días.
+
+### 3. Aplicaciones Web Custom (SaaS & Portales)
+- **Precio**: Desde USD 1.500 (Presupuesto a medida)
+- **Incluye**: Sistemas a medida, dashboards interactivos, portales corporativos, integración con APIs REST/GraphQL.
+
+### 4. SEO Técnico & Optimización de Rendimiento
+- **Precio**: USD 300 / mes (Plan mensual)
+- **Incluye**: Auditoría técnica profunda, investigación de palabras clave, optimización para motores de respuesta e IA (GEO/AEO), informes mensuales.
+
+### 5. Mantenimiento Continuo & Soporte Evolutivo
+- **Precio**: Desde USD 80 / mes (Planes: Básico USD 80, Pro USD 150, Business USD 250)
+- **Incluye**: Actualizaciones de dependencias, copias de seguridad automatizadas en la nube, soporte técnico prioritario.
+
+## Contacto & Sitio Oficial
+- **Sitio Web**: https://apexwebstudio.com
+- **Correo de Soporte**: wbtech.agency@gmail.com
+- **Instagram**: https://www.instagram.com/apex_studioweb/
+- **TikTok**: https://www.tiktok.com/@apex_studioweb
+- **WhatsApp**: https://wa.me/5493454923088

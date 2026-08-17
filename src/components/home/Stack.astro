@@ -1,7 +1,21 @@
 ---
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
-import { Layers, Terminal, Cpu, Sparkles, Cloud, GitBranch } from 'lucide-astro';
+import {
+  Layers,
+  Terminal,
+  Cpu,
+  Sparkles,
+  Cloud,
+  GitBranch,
+  Search,
+  TrendingUp,
+  Bug,
+  Gauge,
+  Code,
+  HelpCircle,
+  FileText,
+} from 'lucide-astro';
 
 const techStack = [
   {
@@ -40,17 +54,62 @@ const techStack = [
     description: 'Integración continua automatizada con auditorías estrictas de linting y build previa al despliegue.',
     icon: GitBranch,
   },
+  {
+    name: 'Google Search Console',
+    category: 'SEO & Indexación',
+    description: 'Indexación y monitoreo del sitio en Google.',
+    icon: Search,
+  },
+  {
+    name: 'Semrush',
+    category: 'Investigación SEO',
+    description: 'Investigación de palabras clave y análisis de competencia.',
+    icon: TrendingUp,
+  },
+  {
+    name: 'Screaming Frog',
+    category: 'Auditoría Técnica',
+    description: 'Rastreo y auditoría técnica del sitio.',
+    icon: Bug,
+  },
+  {
+    name: 'PageSpeed Insights',
+    category: 'Métricas Real User',
+    description: 'Medición de rendimiento real.',
+    icon: Gauge,
+  },
+  {
+    name: 'Schema.org y JSON-LD',
+    category: 'Datos Estructurados',
+    description: 'Datos estructurados para resultados enriquecidos.',
+    icon: Code,
+  },
+  {
+    name: 'AnswerThePublic',
+    category: 'Búsqueda de Intención',
+    description: 'Detección de preguntas reales de usuarios.',
+    icon: HelpCircle,
+  },
+  {
+    name: 'llms.txt',
+    category: 'IA Generativa & GEO',
+    description: 'Optimización para motores de inteligencia artificial generativa.',
+    icon: FileText,
+  },
 ];
 ---
 
-<section id="stack" class="py-24 border-t border-[var(--border-color)] relative">
+<section id="stack" class="py-24 border-t border-[var(--border-color)] relative bg-[var(--bg)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div data-animate="fade-up" class="text-center max-w-3xl mx-auto mb-16">
-      <Badge class="mb-4">Stack Tecnológico Senior</Badge>
-      <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-6">
+    <div data-animate="fade-up" class="text-left max-w-4xl mb-16">
+      <Badge class="mb-4">Ecosistema & Herramientas</Badge>
+      <h2 class="font-heading font-bold text-3xl sm:text-5xl text-[var(--text)] tracking-tight mb-4">
         Tecnología Moderna Sin Deuda Técnica
       </h2>
-      <p class="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
+      <p class="text-base sm:text-lg font-medium text-[var(--text)] leading-relaxed mb-4">
+        SEO para buscadores clásicos, AEO para respuestas directas y búsqueda por voz, GEO para motores de IA como ChatGPT, Perplexity y AI Overviews.
+      </p>
+      <p class="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
         Seleccionamos rigurosamente cada herramienta del ecosistema web para garantizar la velocidad, mantenibilidad e invariabilidad de tu sitio.
       </p>
     </div>
