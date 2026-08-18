@@ -20,7 +20,7 @@ html.dark {
   --bg: #0a1633;
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.7);
-  --text-subtle: rgba(255, 255, 255, 0.5);
+  --text-subtle: rgba(255, 255, 255, 0.12);
   --border-color: rgba(255, 255, 255, 0.12);
   --card-bg: rgba(255, 255, 255, 0.04);
   --card-hover-bg: rgba(255, 255, 255, 0.08);
@@ -46,6 +46,14 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 code, pre, .font-mono {
   font-family: 'JetBrains Mono Variable', monospace;
+}
+
+/* Custom link & button focus: remove square box rings, replace with clean underline */
+a:focus-visible, button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* Custom scrollbar */

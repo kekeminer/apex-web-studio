@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
-import { ArrowLeft, HelpCircle, ArrowRight, Check, CreditCard } from 'lucide-astro';
+import { ArrowLeft, HelpCircle, ArrowRight, Check, CreditCard, Search } from 'lucide-astro';
 
 export async function getStaticPaths() {
   const servicios = await getCollection('servicios');
@@ -132,6 +132,20 @@ const planList = [
           ))
         }
       </div>
+
+      <!-- SEO, AEO & GEO Note (Shown on all services EXCEPT Mantenimiento y Soporte) -->
+      {
+        service.id !== 'mantenimiento-y-soporte' && (
+          <div class="mb-6 p-6 rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="w-10 h-10 rounded-xl border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] flex-shrink-0">
+              <Search class="w-5 h-5" />
+            </div>
+            <p class="text-sm font-medium text-[var(--text)] leading-relaxed">
+              <strong>Optimización Omnicanal Incluida:</strong> Este proyecto incluye optimización de <strong>SEO</strong> (buscadores clásicos), <strong>AEO</strong> (respuestas directas y voz) y <strong>GEO</strong> (motores de inteligencia artificial como ChatGPT, Perplexity y AI Overviews).
+            </p>
+          </div>
+        )
+      }
 
       <!-- Highlighted 40-30-30 Payment Scheme Callout -->
       <div class="p-6 rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col sm:flex-row items-start sm:items-center gap-4">

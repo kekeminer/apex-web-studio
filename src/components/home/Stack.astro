@@ -1,7 +1,7 @@
 ---
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
-import { Layout, Server, Cpu, ShieldCheck } from 'lucide-astro';
+import { Layout, Server, Cpu, ShieldCheck, Search } from 'lucide-astro';
 
 const stackCategories = [
   {
@@ -21,6 +21,12 @@ const stackCategories = [
     icon: Cpu,
     description: 'Infraestructura global, CDN, CI/CD y despliegues automatizados.',
     items: ['Git', 'GitHub', 'GitHub Actions', 'Docker', 'Vercel', 'Netlify', 'Cloudflare Pages & Workers', 'AWS S3 / CloudFront'],
+  },
+  {
+    title: 'Posicionamiento (SEO, AEO y GEO)',
+    icon: Search,
+    description: 'SEO (buscadores clásicos), AEO (respuestas directas y voz), GEO (motores de IA generativa).',
+    items: ['Google Search Console', 'Semrush', 'Screaming Frog', 'Schema.org / JSON-LD', 'llms.txt', 'PageSpeed Insights', 'AnswerThePublic'],
   },
   {
     title: 'Calidad & Rendimiento',
@@ -47,7 +53,7 @@ const stackCategories = [
     </div>
 
     <!-- Category Grid -->
-    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div data-animate="stagger" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         stackCategories.map((category) => {
           const IconComp = category.icon;
@@ -57,10 +63,10 @@ const stackCategories = [
                 <div class="w-10 h-10 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] flex items-center justify-center text-[var(--text)] mb-4">
                   <IconComp class="w-5 h-5" />
                 </div>
-                <h3 class="font-heading font-bold text-xl text-[var(--text)] mb-2">
+                <h3 class="font-heading font-bold text-lg text-[var(--text)] mb-2">
                   {category.title}
                 </h3>
-                <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6">
+                <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6 min-h-[36px]">
                   {category.description}
                 </p>
 
