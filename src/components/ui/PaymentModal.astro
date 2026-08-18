@@ -3,122 +3,137 @@ import { CONFIG_PAGOS } from '../../config/pagos';
 import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
 ---
 
-<!-- Accessible Payment Modal -->
+<!-- Accessible Payment Modal Container -->
 <div
   id="payment-modal"
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
-  class="fixed inset-0 z-50 hidden overflow-y-auto overscroll-contain p-4 sm:p-6 bg-black/70 backdrop-blur-sm flex items-center justify-center min-h-screen"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/75 backdrop-blur-md"
 >
-  <!-- Modal Card Window -->
+  <!-- Modal Card Window (Perfectly Encased & Framed with Rounded Corners) -->
   <div
-    class="modal-window bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--border-color)] rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[85vh] my-auto text-left overscroll-contain"
+    class="modal-window bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--border-color)] rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl flex flex-col max-h-[85vh] text-left overflow-hidden"
   >
-    <!-- Close Button -->
-    <button
-      id="close-modal-btn"
-      type="button"
-      aria-label="Cerrar ventana de pago"
-      class="absolute top-5 right-5 p-2 rounded-xl border border-[var(--border-color)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-colors focus:border-b-2"
-    >
-      <X class="w-5 h-5" />
-    </button>
-
-    <!-- Header -->
-    <div class="mb-6 pr-8">
-      <span class="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] block mb-1">
-        Detalles de Pago Directo
-      </span>
-      <h3 id="modal-title" class="font-heading font-bold text-xl sm:text-2xl text-[var(--text)] tracking-tight">
-        Pagar Plan
-      </h3>
-    </div>
-
-    <!-- Commission Free Highlighted Note -->
-    <div class="p-4 mb-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs text-[var(--text)] flex items-start gap-3 leading-relaxed font-medium">
-      <ShieldCheck class="w-5 h-5 text-[var(--text)] flex-shrink-0 mt-0.5" />
-      <p>{CONFIG_PAGOS.notaSinComision}</p>
-    </div>
-
-    <!-- Payment Method Toggles / Tabs -->
-    <div class="grid grid-cols-2 gap-2 p-1 mb-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]">
+    <!-- Header (Fixed top inside modal) -->
+    <div class="flex items-start justify-between pb-4 border-b border-[var(--border-color)] mb-5 flex-shrink-0">
+      <div>
+        <span class="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] block mb-1">
+          Detalles de Pago Directo
+        </span>
+        <h3 id="modal-title" class="font-heading font-bold text-xl sm:text-2xl text-[var(--text)] tracking-tight">
+          Pagar Plan
+        </h3>
+      </div>
       <button
-        id="tab-transferencia"
+        id="close-modal-btn"
         type="button"
-        class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-[var(--border-color)] bg-[var(--bg)] text-[var(--text)] shadow-sm focus:border-b-2"
+        aria-label="Cerrar ventana de pago"
+        class="p-2 rounded-xl border border-[var(--border-color)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-colors focus:border-b-2 flex-shrink-0"
       >
-        {CONFIG_PAGOS.opciones[0].titulo}
-      </button>
-      <button
-        id="tab-mercadopago"
-        type="button"
-        class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-transparent text-[var(--text-muted)] hover:text-[var(--text)] focus:border-b-2"
-      >
-        {CONFIG_PAGOS.opciones[1].titulo}
+        <X class="w-5 h-5" />
       </button>
     </div>
 
-    <!-- Method Guide Text -->
-    <div id="method-guide" class="mb-6 text-xs text-[var(--text-muted)] leading-relaxed font-mono p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]">
-      {CONFIG_PAGOS.opciones[0].textoGuia}
-    </div>
-
-    <!-- Payment Details Block -->
-    <div class="space-y-4 mb-8">
-      <!-- Titular Field -->
-      <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-1">
-        <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
-          Titular de la cuenta
-        </span>
-        <span class="font-heading font-bold text-base text-[var(--text)]">
-          {CONFIG_PAGOS.titular}
-        </span>
+    <!-- Scrollable Modal Body (Only this area scrolls) -->
+    <div class="modal-body overflow-y-auto overscroll-contain pr-1 flex-1 space-y-5">
+      <!-- Commission Free Highlighted Note -->
+      <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs text-[var(--text)] flex items-start gap-3 leading-relaxed font-medium">
+        <ShieldCheck class="w-5 h-5 text-[var(--text)] flex-shrink-0 mt-0.5" />
+        <p>{CONFIG_PAGOS.notaSinComision}</p>
       </div>
 
-      <!-- CBU Field with Copy Button -->
-      <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-2">
-        <div class="flex items-center justify-between">
+      <!-- Payment Method Toggles / Tabs -->
+      <div class="grid grid-cols-2 gap-2 p-1 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]">
+        <button
+          id="tab-transferencia"
+          type="button"
+          class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-[var(--border-color)] bg-[var(--bg)] text-[var(--text)] shadow-sm focus:border-b-2"
+        >
+          {CONFIG_PAGOS.opciones[0].titulo}
+        </button>
+        <button
+          id="tab-mercadopago"
+          type="button"
+          class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-transparent text-[var(--text-muted)] hover:text-[var(--text)] focus:border-b-2"
+        >
+          {CONFIG_PAGOS.opciones[1].titulo}
+        </button>
+      </div>
+
+      <!-- Method Guide Text -->
+      <div id="method-guide" class="text-xs text-[var(--text-muted)] leading-relaxed font-mono p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]">
+        {CONFIG_PAGOS.opciones[0].textoGuia}
+      </div>
+
+      <!-- Payment Details Block -->
+      <div class="space-y-4">
+        <!-- Titular Field -->
+        <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-1">
           <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
-            CBU de destino (22 dígitos)
+            Titular de la cuenta
+          </span>
+          <span class="font-heading font-bold text-base text-[var(--text)]">
+            {CONFIG_PAGOS.titular}
           </span>
         </div>
 
-        <div class="flex items-center justify-between gap-3">
-          <span id="cbu-value" class="font-mono font-semibold text-xs sm:text-sm text-[var(--text)] tracking-wider break-all">
-            {CONFIG_PAGOS.cbu}
-          </span>
+        <!-- CBU Field with Copy Button -->
+        <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
+              CBU de destino (22 dígitos)
+            </span>
+          </div>
 
-          <!-- Touch Target Min 44x44px Interactive Copy Button -->
-          <button
-            id="copy-cbu-btn"
-            type="button"
-            aria-label="Copiar CBU"
-            class="min-w-[44px] min-h-[44px] p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-all flex items-center justify-center gap-1.5 focus:border-b-2 flex-shrink-0"
-          >
-            <Copy id="icon-copy" class="w-4 h-4" />
-            <Check id="icon-check" class="w-4 h-4 hidden text-[var(--text)]" />
-            <span id="copy-text" class="text-xs font-mono font-medium">Copiar</span>
-          </button>
+          <div class="flex items-center justify-between gap-3">
+            <span id="cbu-value" class="font-mono font-semibold text-xs sm:text-sm text-[var(--text)] tracking-wider break-all">
+              {CONFIG_PAGOS.cbu}
+            </span>
+
+            <!-- Touch Target Min 44x44px Interactive Copy Button -->
+            <button
+              id="copy-cbu-btn"
+              type="button"
+              aria-label="Copiar CBU"
+              class="min-w-[44px] min-h-[44px] p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-all flex items-center justify-center gap-1.5 focus:border-b-2 flex-shrink-0"
+            >
+              <Copy id="icon-copy" class="w-4 h-4" />
+              <Check id="icon-check" class="w-4 h-4 hidden text-[var(--text)]" />
+              <span id="copy-text" class="text-xs font-mono font-medium">Copiar</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- WhatsApp Confirmation CTA Button -->
-    <a
-      id="modal-whatsapp-btn"
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="w-full py-3.5 px-6 rounded-xl bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] font-heading font-bold text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 focus:border-b-2 text-center"
-    >
-      <MessageSquare class="w-4 h-4" />
-      <span>Confirmar pago por WhatsApp</span>
-    </a>
+      <!-- WhatsApp Confirmation CTA Button -->
+      <a
+        id="modal-whatsapp-btn"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full py-3.5 px-6 rounded-xl bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] font-heading font-bold text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 focus:border-b-2 text-center mt-4"
+      >
+        <MessageSquare class="w-4 h-4" />
+        <span>Confirmar pago por WhatsApp</span>
+      </a>
+    </div>
   </div>
 </div>
 
 <style>
+  /* Custom scrollbar for modal body */
+  .modal-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modal-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     #payment-modal, .modal-window {
       transition: none !important;
@@ -132,6 +147,7 @@ import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
 
   interface WindowWithPaymentModal extends Window {
     openPaymentModal?: (serviceName: string, planName: string, triggerEl?: HTMLElement) => void;
+    lenis?: { stop: () => void; start: () => void };
   }
 
   function setupPaymentModal() {
@@ -163,16 +179,29 @@ import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
         whatsappBtn.href = `https://wa.me/${CONFIG_PAGOS.whatsapp}?text=${encodeURIComponent(textMsg)}`;
       }
 
+      // Stop Lenis smooth scroll if present
+      const win = window as WindowWithPaymentModal;
+      if (win.lenis && typeof win.lenis.stop === 'function') {
+        win.lenis.stop();
+      }
+
       modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.classList.add('overflow-hidden');
+      document.documentElement.classList.add('overflow-hidden');
       closeBtn.focus();
     };
 
     function closeModal() {
       modal.classList.add('hidden');
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
+      document.body.classList.remove('overflow-hidden');
+      document.documentElement.classList.remove('overflow-hidden');
+
+      // Restart Lenis smooth scroll if present
+      const win = window as WindowWithPaymentModal;
+      if (win.lenis && typeof win.lenis.start === 'function') {
+        win.lenis.start();
+      }
+
       if (triggerElement) {
         triggerElement.focus();
       }
@@ -191,6 +220,23 @@ import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
         closeModal();
       }
     });
+
+    // Isolate wheel & touchmove scrolling to modal body only
+    modal.addEventListener('wheel', (e) => {
+      const modalBody = modal.querySelector('.modal-body');
+      if (modalBody && modalBody.contains(e.target as Node)) {
+        return;
+      }
+      e.preventDefault();
+    }, { passive: false });
+
+    modal.addEventListener('touchmove', (e) => {
+      const modalBody = modal.querySelector('.modal-body');
+      if (modalBody && modalBody.contains(e.target as Node)) {
+        return;
+      }
+      e.preventDefault();
+    }, { passive: false });
 
     // Tab Toggling
     function selectTab(isTransferencia: boolean) {
