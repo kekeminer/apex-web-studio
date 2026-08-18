@@ -91,17 +91,16 @@ const planList = [
               }`}
             >
               <div>
-                {plan.recomendado && (
-                  <div class="absolute -top-3.5 right-6">
-                    <Badge class="bg-[var(--text)] text-[var(--bg)] font-mono text-[10px] uppercase py-0.5 px-3">
+                <div class="flex items-center justify-between gap-3 mb-3">
+                  <h3 class="font-heading font-bold text-2xl text-[var(--text)]">
+                    {plan.name}
+                  </h3>
+                  {plan.recomendado && (
+                    <span class="inline-block bg-[var(--text)] text-[var(--bg)] font-mono text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-full shadow-sm flex-shrink-0">
                       Recomendado
-                    </Badge>
-                  </div>
-                )}
-
-                <h3 class="font-heading font-bold text-2xl text-[var(--text)] mb-2">
-                  {plan.name}
-                </h3>
+                    </span>
+                  )}
+                </div>
                 <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6 min-h-[36px]">
                   {plan.data.descripcion}
                 </p>
