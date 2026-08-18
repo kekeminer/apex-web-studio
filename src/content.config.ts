@@ -36,22 +36,6 @@ const serviciosCollection = defineCollection({
   }),
 });
 
-const proyectosCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/proyectos' }),
-  schema: z.object({
-    title: z.string(),
-    client: z.string(),
-    category: z.string(),
-    description: z.string(),
-    image: z.string(),
-    results: z.array(z.string()),
-    technologies: z.array(z.string()),
-    featured: z.boolean().default(false),
-    order: z.number(),
-  }),
-});
-
 export const collections = {
   servicios: serviciosCollection,
-  proyectos: proyectosCollection,
 };
