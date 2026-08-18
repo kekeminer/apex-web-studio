@@ -9,11 +9,11 @@ import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
   role="dialog"
   aria-modal="true"
   aria-labelledby="modal-title"
-  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+  class="fixed inset-0 z-50 hidden overflow-y-auto overscroll-contain p-4 sm:p-6 bg-black/70 backdrop-blur-sm flex items-center justify-center min-h-screen"
 >
   <!-- Modal Card Window -->
   <div
-    class="modal-window bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--border-color)] rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-left"
+    class="modal-window bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--border-color)] rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[85vh] my-auto text-left overscroll-contain"
   >
     <!-- Close Button -->
     <button
@@ -165,12 +165,14 @@ import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
 
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       closeBtn.focus();
     };
 
     function closeModal() {
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       if (triggerElement) {
         triggerElement.focus();
       }
