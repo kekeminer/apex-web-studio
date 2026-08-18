@@ -29,20 +29,30 @@ export function initAnimations() {
   // Fade-up elements
   const fadeUpEls = document.querySelectorAll('[data-animate="fade-up"]');
   fadeUpEls.forEach((el) => {
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-        },
-      }
-    );
+    // Hero elements (inside first section, above fold): animate immediately, no ScrollTrigger wait
+    const isHero = el.closest('section')?.matches(':first-of-type');
+    if (isHero) {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+      );
+    } else {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+          },
+        }
+      );
+    }
   });
 
   // Stagger grid/list items

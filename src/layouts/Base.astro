@@ -33,25 +33,17 @@ const { title, description, image } = Astro.props;
     <!-- Floating WhatsApp Button -->
     <WhatsAppButton />
 
-    <!-- GSAP / Lenis Animation Trigger (diferido post-LCP) -->
+    <!-- GSAP / Lenis Animation Trigger -->
     <script>
       import { initAnimations } from '../scripts/animations';
 
-      function scheduleAnimations() {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => initAnimations(), { timeout: 2000 });
-        } else {
-          setTimeout(() => initAnimations(), 200);
-        }
-      }
-
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', scheduleAnimations);
+        document.addEventListener('DOMContentLoaded', () => initAnimations());
       } else {
-        scheduleAnimations();
+        initAnimations();
       }
 
-      document.addEventListener('astro:after-swap', scheduleAnimations);
+      document.addEventListener('astro:after-swap', () => initAnimations());
     </script>
   </body>
 </html>
