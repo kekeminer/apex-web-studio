@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Card from '../../components/ui/Card.astro';
 import Button from '../../components/ui/Button.astro';
+import PaymentModal from '../../components/ui/PaymentModal.astro';
 import { ArrowLeft, HelpCircle, ArrowRight, Check, CreditCard, Search } from 'lucide-astro';
 
 export async function getStaticPaths() {
@@ -124,8 +125,16 @@ const planList = [
                 </ul>
               </div>
 
-              <Button href="/#contacto" variant={plan.recomendado ? 'primary' : 'outline'} size="md" class="w-full">
-                <span>Elegir plan {plan.name}</span>
+              <!-- Button "Pagar este plan" -->
+              <Button
+                type="button"
+                variant={plan.recomendado ? 'primary' : 'outline'}
+                size="md"
+                class="w-full btn-pay-plan"
+                data-service-title={title}
+                data-plan-name={plan.name}
+              >
+                <span>Pagar este plan</span>
                 <ArrowRight class="w-4 h-4" />
               </Button>
             </Card>
@@ -247,4 +256,31 @@ const planList = [
       </div>
     </div>
   </section>
+
+  <!-- Reusable Accessible Payment Modal -->
+  <PaymentModal />
 </Base>
+
+<script>
+  interface WindowWithPaymentModal extends Window {
+    openPaymentModal?: (serviceTitle: string, planName: string, target?: HTMLElement) => void;
+  }
+
+  function setupPlanPayButtons() {
+    const payButtons = document.querySelectorAll('.btn-pay-plan');
+    payButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const serviceTitle = target.getAttribute('data-service-title') || '';
+        const planName = target.getAttribute('data-plan-name') || '';
+        const win = window as WindowWithPaymentModal;
+        if (typeof win.openPaymentModal === 'function') {
+          win.openPaymentModal(serviceTitle, planName, target);
+        }
+      });
+    });
+  }
+
+  setupPlanPayButtons();
+  document.addEventListener('astro:after-swap', setupPlanPayButtons);
+</script>

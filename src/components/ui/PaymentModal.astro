@@ -1,0 +1,265 @@
+---
+import { CONFIG_PAGOS } from '../../config/pagos';
+import { X, Copy, Check, MessageSquare, ShieldCheck } from 'lucide-astro';
+---
+
+<!-- Accessible Payment Modal -->
+<div
+  id="payment-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+>
+  <!-- Modal Card Window -->
+  <div
+    class="modal-window bg-[var(--bg)] text-[var(--text)] border-2 border-[var(--border-color)] rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] text-left"
+  >
+    <!-- Close Button -->
+    <button
+      id="close-modal-btn"
+      type="button"
+      aria-label="Cerrar ventana de pago"
+      class="absolute top-5 right-5 p-2 rounded-xl border border-[var(--border-color)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-colors focus:border-b-2"
+    >
+      <X class="w-5 h-5" />
+    </button>
+
+    <!-- Header -->
+    <div class="mb-6 pr-8">
+      <span class="text-[10px] font-mono uppercase tracking-widest text-[var(--text-muted)] block mb-1">
+        Detalles de Pago Directo
+      </span>
+      <h3 id="modal-title" class="font-heading font-bold text-xl sm:text-2xl text-[var(--text)] tracking-tight">
+        Pagar Plan
+      </h3>
+    </div>
+
+    <!-- Commission Free Highlighted Note -->
+    <div class="p-4 mb-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs text-[var(--text)] flex items-start gap-3 leading-relaxed font-medium">
+      <ShieldCheck class="w-5 h-5 text-[var(--text)] flex-shrink-0 mt-0.5" />
+      <p>{CONFIG_PAGOS.notaSinComision}</p>
+    </div>
+
+    <!-- Payment Method Toggles / Tabs -->
+    <div class="grid grid-cols-2 gap-2 p-1 mb-6 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]">
+      <button
+        id="tab-transferencia"
+        type="button"
+        class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-[var(--border-color)] bg-[var(--bg)] text-[var(--text)] shadow-sm focus:border-b-2"
+      >
+        {CONFIG_PAGOS.opciones[0].titulo}
+      </button>
+      <button
+        id="tab-mercadopago"
+        type="button"
+        class="py-2.5 px-3 rounded-lg text-xs font-mono font-semibold transition-all text-center border border-transparent text-[var(--text-muted)] hover:text-[var(--text)] focus:border-b-2"
+      >
+        {CONFIG_PAGOS.opciones[1].titulo}
+      </button>
+    </div>
+
+    <!-- Method Guide Text -->
+    <div id="method-guide" class="mb-6 text-xs text-[var(--text-muted)] leading-relaxed font-mono p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]">
+      {CONFIG_PAGOS.opciones[0].textoGuia}
+    </div>
+
+    <!-- Payment Details Block -->
+    <div class="space-y-4 mb-8">
+      <!-- Titular Field -->
+      <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-1">
+        <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
+          Titular de la cuenta
+        </span>
+        <span class="font-heading font-bold text-base text-[var(--text)]">
+          {CONFIG_PAGOS.titular}
+        </span>
+      </div>
+
+      <!-- CBU Field with Copy Button -->
+      <div class="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col gap-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
+            CBU de destino (22 dígitos)
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between gap-3">
+          <span id="cbu-value" class="font-mono font-semibold text-xs sm:text-sm text-[var(--text)] tracking-wider break-all">
+            {CONFIG_PAGOS.cbu}
+          </span>
+
+          <!-- Touch Target Min 44x44px Interactive Copy Button -->
+          <button
+            id="copy-cbu-btn"
+            type="button"
+            aria-label="Copiar CBU"
+            class="min-w-[44px] min-h-[44px] p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg)] hover:bg-[var(--card-hover-bg)] text-[var(--text)] transition-all flex items-center justify-center gap-1.5 focus:border-b-2 flex-shrink-0"
+          >
+            <Copy id="icon-copy" class="w-4 h-4" />
+            <Check id="icon-check" class="w-4 h-4 hidden text-[var(--text)]" />
+            <span id="copy-text" class="text-xs font-mono font-medium">Copiar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp Confirmation CTA Button -->
+    <a
+      id="modal-whatsapp-btn"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full py-3.5 px-6 rounded-xl bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] font-heading font-bold text-sm flex items-center justify-center gap-2 transition-all hover:opacity-90 focus:border-b-2 text-center"
+    >
+      <MessageSquare class="w-4 h-4" />
+      <span>Confirmar pago por WhatsApp</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    #payment-modal, .modal-window {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { CONFIG_PAGOS } from '../../config/pagos';
+
+  interface WindowWithPaymentModal extends Window {
+    openPaymentModal?: (serviceName: string, planName: string, triggerEl?: HTMLElement) => void;
+  }
+
+  function setupPaymentModal() {
+    const modal = document.getElementById('payment-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const tabTransferencia = document.getElementById('tab-transferencia');
+    const tabMercadopago = document.getElementById('tab-mercadopago');
+    const methodGuide = document.getElementById('method-guide');
+    const copyBtn = document.getElementById('copy-cbu-btn');
+    const iconCopy = document.getElementById('icon-copy');
+    const iconCheck = document.getElementById('icon-check');
+    const copyText = document.getElementById('copy-text');
+    const whatsappBtn = document.getElementById('modal-whatsapp-btn') as HTMLAnchorElement | null;
+
+    if (!modal || !closeBtn || !modalTitle || !tabTransferencia || !tabMercadopago || !methodGuide || !copyBtn) return;
+
+    let triggerElement: HTMLElement | null = null;
+
+    // Global opener function attached to window
+    (window as WindowWithPaymentModal).openPaymentModal = (serviceName: string, planName: string, triggerEl?: HTMLElement) => {
+      triggerElement = triggerEl || null;
+
+      modalTitle.textContent = `Pagar Plan ${planName} de ${serviceName}`;
+
+      // Update WhatsApp URL
+      if (whatsappBtn) {
+        const textMsg = `Hola Apex Web Studio, quiero confirmar el pago del plan ${planName} de ${serviceName}. Adjunto el comprobante.`;
+        whatsappBtn.href = `https://wa.me/${CONFIG_PAGOS.whatsapp}?text=${encodeURIComponent(textMsg)}`;
+      }
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    };
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (triggerElement) {
+        triggerElement.focus();
+      }
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Tab Toggling
+    function selectTab(isTransferencia: boolean) {
+      if (isTransferencia) {
+        tabTransferencia.classList.add('border-[var(--border-color)]', 'bg-[var(--bg)]', 'shadow-sm');
+        tabTransferencia.classList.remove('border-transparent', 'text-[var(--text-muted)]');
+
+        tabMercadopago.classList.remove('border-[var(--border-color)]', 'bg-[var(--bg)]', 'shadow-sm');
+        tabMercadopago.classList.add('border-transparent', 'text-[var(--text-muted)]');
+
+        methodGuide.textContent = CONFIG_PAGOS.opciones[0].textoGuia;
+      } else {
+        tabMercadopago.classList.add('border-[var(--border-color)]', 'bg-[var(--bg)]', 'shadow-sm');
+        tabMercadopago.classList.remove('border-transparent', 'text-[var(--text-muted)]');
+
+        tabTransferencia.classList.remove('border-[var(--border-color)]', 'bg-[var(--bg)]', 'shadow-sm');
+        tabTransferencia.classList.add('border-transparent', 'text-[var(--text-muted)]');
+
+        methodGuide.textContent = CONFIG_PAGOS.opciones[1].textoGuia;
+      }
+    }
+
+    tabTransferencia.addEventListener('click', () => selectTab(true));
+    tabMercadopago.addEventListener('click', () => selectTab(false));
+
+    // Copy CBU logic (22 digits only)
+    copyBtn.addEventListener('click', async () => {
+      const cbuToCopy = CONFIG_PAGOS.cbu;
+      let copiedSuccess = false;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(cbuToCopy);
+          copiedSuccess = true;
+        } catch {
+          copiedSuccess = false;
+        }
+      }
+
+      if (!copiedSuccess) {
+        // Fallback for mobile / non-secure contexts
+        const textArea = document.createElement('textarea');
+        textArea.value = cbuToCopy;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          copiedSuccess = true;
+        } catch {
+          copiedSuccess = false;
+        }
+        document.body.removeChild(textArea);
+      }
+
+      if (copiedSuccess) {
+        if (iconCopy) iconCopy.classList.add('hidden');
+        if (iconCheck) iconCheck.classList.remove('hidden');
+        if (copyText) copyText.textContent = '¡Copiado!';
+
+        setTimeout(() => {
+          if (iconCopy) iconCopy.classList.remove('hidden');
+          if (iconCheck) iconCheck.classList.add('hidden');
+          if (copyText) copyText.textContent = 'Copiar';
+        }, 2000);
+      }
+    });
+  }
+
+  setupPaymentModal();
+  document.addEventListener('astro:after-swap', setupPaymentModal);
+</script>
