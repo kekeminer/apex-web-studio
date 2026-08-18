@@ -46,17 +46,9 @@ const jsonLd = {
 
 // Critical CSS inline para navbar y hero (primer render sin bloqueos)
 const criticalCSS = `
-  *,::before,::after{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background-color:#ffffff;color:#0a1633;font-family:'Manrope Variable',sans-serif;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
-  html.dark body{background-color:#0a1633;color:#ffffff}
-  header#navbar{position:fixed;top:0;left:0;width:100%;z-index:50;padding-top:.75rem;padding-left:1rem;padding-right:1rem}
-  header#navbar>div{max-width:80rem;margin:0 auto;height:4rem;padding-left:1.5rem;padding-right:1.5rem;border-radius:1rem;border:1px solid rgba(10,22,51,0.12);background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);box-shadow:0 4px 6px -1px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:space-between}
-  html.dark header#navbar>div{background:rgba(10,22,51,0.85);border-color:rgba(255,255,255,0.12)}
-  main{flex:1;padding-top:5rem}
-  h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk Variable',sans-serif;margin:0}
-  :root{--bg:#ffffff;--text:#0a1633;--text-muted:rgba(10,22,51,0.7);--border-color:rgba(10,22,51,0.12);--card-bg:rgba(10,22,51,0.03);--navbar-bg:rgba(255,255,255,0.85);--btn-primary-bg:#0a1633;--btn-primary-text:#ffffff;--btn-secondary-bg:rgba(10,22,51,0.06);--btn-secondary-text:#0a1633}
-  html.dark{--bg:#0a1633;--text:#ffffff;--text-muted:rgba(255,255,255,0.7);--border-color:rgba(255,255,255,0.12);--card-bg:rgba(255,255,255,0.04);--navbar-bg:rgba(10,22,51,0.85);--btn-primary-bg:#ffffff;--btn-primary-text:#0a1633;--btn-secondary-bg:rgba(255,255,255,0.1);--btn-secondary-text:#ffffff}
+  :root{--bg:#ffffff;--text:#0a1633;--text-muted:rgba(10,22,51,0.7);--text-subtle:rgba(10,22,51,0.5);--border-color:rgba(10,22,51,0.12);--card-bg:rgba(10,22,51,0.03);--card-hover-bg:rgba(10,22,51,0.06);--navbar-bg:rgba(255,255,255,0.85);--badge-bg:rgba(10,22,51,0.08);--btn-primary-bg:#0a1633;--btn-primary-text:#ffffff;--btn-secondary-bg:rgba(10,22,51,0.06);--btn-secondary-text:#0a1633}
+  html.dark{--bg:#0a1633;--text:#ffffff;--text-muted:rgba(255,255,255,0.7);--text-subtle:rgba(255,255,255,0.12);--border-color:rgba(255,255,255,0.12);--card-bg:rgba(255,255,255,0.04);--card-hover-bg:rgba(255,255,255,0.08);--navbar-bg:rgba(10,22,51,0.85);--badge-bg:rgba(255,255,255,0.1);--btn-primary-bg:#ffffff;--btn-primary-text:#0a1633;--btn-secondary-bg:rgba(255,255,255,0.1);--btn-secondary-text:#ffffff}
+  body{background-color:var(--bg);color:var(--text);overflow-x:hidden}
 `;
 ---
 
