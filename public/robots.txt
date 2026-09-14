@@ -1,0 +1,7 @@
+# Apex Web Studio Robots Configuration
+User-agent: *
+Allow: /
+
+# Canonical Sitemap Index
+Sitemap: https://apexwebstudio.com/sitemap-index.xml
+Host: https://apexwebstudio.com

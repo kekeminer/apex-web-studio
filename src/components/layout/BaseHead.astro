@@ -23,25 +23,61 @@ const {
 const siteName = 'Apex Web Studio';
 const formattedTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
-// JSON-LD Organization & Website Schema
+// JSON-LD Organization, Website & ProfessionalService Schema (SEO / AEO)
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: siteName,
-  url: 'https://apexwebstudio.com',
-  logo: 'https://apexwebstudio.com/logo.webp',
-  image: 'https://apexwebstudio.com/logo.webp',
-  description: description,
-  email: 'wbtech.agency@gmail.com',
-  sameAs: [
-    'https://www.instagram.com/apex_studioweb/',
-    'https://www.tiktok.com/@apex_studioweb',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://apexwebstudio.com/#organization',
+      name: siteName,
+      url: 'https://apexwebstudio.com',
+      logo: {
+        '@type': 'ImageObject',
+        '@id': 'https://apexwebstudio.com/#logo',
+        url: 'https://apexwebstudio.com/logo.webp',
+        caption: siteName,
+      },
+      image: 'https://apexwebstudio.com/logo.webp',
+      email: 'wbtech.agency@gmail.com',
+      telephone: '+5493454923088',
+      sameAs: [
+        'https://www.instagram.com/apex_studioweb/',
+        'https://www.tiktok.com/@apex_studioweb',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://apexwebstudio.com/#website',
+      url: 'https://apexwebstudio.com',
+      name: siteName,
+      publisher: {
+        '@id': 'https://apexwebstudio.com/#organization',
+      },
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://apexwebstudio.com/#service',
+      name: siteName,
+      url: 'https://apexwebstudio.com',
+      priceRange: '$$$',
+      description: description,
+      parentOrganization: {
+        '@id': 'https://apexwebstudio.com/#organization',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Servicios de Desarrollo Web & Software',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desarrollo de Landing Page' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Tiendas E-commerce de Alto Rendimiento' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Aplicaciones Web Custom (SaaS & Portales)' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mantenimiento Continuo & Soporte Evolutivo' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Agentes de IA & Cerebros Digitales' } },
+        ],
+      },
+    },
   ],
-  priceRange: '$$$',
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'ES',
-  },
 };
 
 // Critical CSS inline para navbar y hero (primer render sin bloqueos)

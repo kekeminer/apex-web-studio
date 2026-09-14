@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     question: '¿Cómo se realiza el pago?',
-    answer: 'Trabajamos con un esquema 40-30-30: 40% al iniciar el proyecto, 30% al entregar el diseño y la funcionalidad, y 30% al publicar el sitio en la web. Aceptamos Transferencia bancaria, Mercado Pago y efectivo.',
+    answer: 'Trabajamos con un esquema 40-30-30: 40% al iniciar el proyecto, 30% al entregar el diseño y la funcionalidad, y 30% al publicar el sitio en la web. Aceptamos Transferencia bancaria, Mercado Pago y cripto/efectivo.',
   },
   {
     question: '¿La consulta inicial tiene costo?',
@@ -36,7 +36,23 @@ const faqs = [
     answer: 'Sí, trabajamos de forma remota con clientes de Argentina y del mundo.',
   },
 ];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.answer,
+    },
+  })),
+};
 ---
+
+<!-- FAQ Schema JSON-LD for AEO / SearchGPT / Perplexity -->
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
 <section id="faq" class="py-20 border-t border-[var(--border-color)] relative bg-[var(--bg)]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

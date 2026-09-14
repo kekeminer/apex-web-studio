@@ -1,18 +1,19 @@
 export const CONFIG_PAGOS = {
   titular: "Axel Matias Gamarra",
   cbu: "0000003100028073040358",
+  alias: "APEX.WEB.STUDIO",
+  cuit: "20-41893214-7",
   whatsapp: "5493454923088",
-  notaSinComision: "Ambos métodos son sin comisión. Cuando realices el pago, enviá el comprobante por WhatsApp para confirmarlo.",
-  opciones: [
-    {
-      id: "transferencia",
-      titulo: "Transferencia bancaria",
-      textoGuia: "Transferí desde tu home banking a este CBU."
-    },
-    {
-      id: "mercadopago",
-      titulo: "Mercado Pago",
-      textoGuia: "Abrí Mercado Pago, tocá en 'Enviar dinero' y transferí a este CBU. Pagás con tu dinero en cuenta, sin comisión."
-    }
-  ]
+  cripto: {
+    moneda: "USDT",
+    red: "TRC-20 (Tron) / BEP-20",
+    wallet: "TJvApexStudioWebUSDTWallet8921",
+  },
+  notaSinComision: "Transferencias directas y pagos sin comisiones intermediarias. Envía el comprobante para activación instantánea.",
+  esquema: "Esquema 40-30-30: 40% al iniciar, 30% contra entrega de diseño/funcionalidad y 30% al publicar en producción.",
+  metodosAceptados: [
+    { id: "cbu", nombre: "CBU / CVU", badge: "Transferencia Bancaria", icon: "bank" },
+    { id: "mercadopago", nombre: "Mercado Pago", badge: "Mercado Pago", icon: "mp" },
+    { id: "usdt", nombre: "USDT / Crypto", badge: "TRC20 / BEP20", icon: "crypto" },
+  ],
 } as const;

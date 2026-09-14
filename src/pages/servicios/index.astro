@@ -1,0 +1,444 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+import PaymentModal from '../../components/ui/PaymentModal.astro';
+import {
+  ArrowRight,
+  Sparkles,
+  Zap,
+  ShieldCheck,
+  TrendingUp,
+  Cpu,
+  Layers,
+  HelpCircle,
+  CreditCard,
+  Search,
+  CheckCircle2,
+} from 'lucide-astro';
+
+const allServices = await getCollection('servicios');
+const services = allServices.sort((a, b) => a.data.order - b.data.order);
+
+// Service Highlights & Technical Metadata
+const serviceMetadata: Record<
+  string,
+  {
+    roi: string;
+    roiLabel: string;
+    stack: string[];
+    entregables: string[];
+    highlight: string;
+  }
+> = {
+  'desarrollo-de-landing-page': {
+    roi: '+45%',
+    roiLabel: 'Incremento promedio en tasa de conversión',
+    stack: ['Astro 5', 'Tailwind CSS v4', 'TypeScript', 'GSAP', 'Vercel Edge'],
+    entregables: [
+      'Página de aterrizaje 100% optimizada para conversión',
+      'Arquitectura LCP < 1.0s con 0 KB de scripts innecesarios',
+      'Formulario validado con Zod y sanitización antispam',
+      'Modo claro y oscuro nativo con persistencia local',
+    ],
+    highlight: 'Ideal para campañas publicitarias y validación de ofertas',
+  },
+  'tiendas-ecommerce': {
+    roi: '-35%',
+    roiLabel: 'Reducción en tasa de abandono de carrito',
+    stack: ['Astro / Next.js', 'TypeScript', 'Stripe', 'Mercado Pago', 'Supabase'],
+    entregables: [
+      'Catálogo interactivo con filtrado instantáneo',
+      'Checkout optimizado en 2 pasos de baja fricción',
+      'Integración nativa con pasarelas de pago locales e internacionales',
+      'Panel de control autogestionable para pedidos y stock',
+    ],
+    highlight: 'Escalabilidad para fechas comerciales de alto tráfico',
+  },
+  'aplicaciones-web': {
+    roi: '3.5x',
+    roiLabel: 'Eficiencia operativa y automatización de procesos',
+    stack: ['React / Astro', 'Node.js', 'PostgreSQL', 'Serverless', 'Docker'],
+    entregables: [
+      'Arquitectura modular basada en microservicios o modular monolith',
+      'Autenticación segura (OAuth 2.0 / JWT) y roles RBAC',
+      'Base de datos estructurada con telemetría en tiempo real',
+      'Código fuente tipado y suites de testing automatizado',
+    ],
+    highlight: 'Software a medida sin deuda técnica ni limitaciones',
+  },
+  'mantenimiento-y-soporte': {
+    roi: '99.9%',
+    roiLabel: 'Garantía de disponibilidad y tiempo de actividad (uptime)',
+    stack: ['Uptime Kuma', 'GitHub Actions', 'Cloud Backups', 'Vercel Monitoring'],
+    entregables: [
+      'Actualizaciones mensuales preventivas de librerías y parches',
+      'Copias de respaldo redundantes y cifradas en la nube',
+      'Monitoreo continuo 24/7 con alertas de incidentes',
+      'Horas mensuales garantizadas de desarrollo evolutivo',
+    ],
+    highlight: 'Acompañamiento continuo y evolución sostenida',
+  },
+  'agentes-de-ia': {
+    roi: '70%',
+    roiLabel: 'Resolución autónoma de consultas de clientes',
+    stack: ['Python / TypeScript', 'OpenAI / Anthropic', 'Vector DB', 'RAG'],
+    entregables: [
+      'Agente conversacional entrenado con la base de conocimiento de tu empresa',
+      'Integración directa en sitio web, WhatsApp Business y CRM',
+      'Capacidad de ejecutar acciones en vivo (Function Calling)',
+      'Panel de supervisión, auditoría y afinación de respuestas',
+    ],
+    highlight: 'Cerebros digitales autónomos con seguridad enterprise',
+  },
+};
+
+const methodologySteps = [
+  {
+    step: '01',
+    title: 'Descubrimiento & Estrategia de Conversión',
+    desc: 'Auditamos tu modelo comercial, embudos actuales y audiencia objetivo para proyectar la arquitectura técnica que maximice conversiones y retención.',
+  },
+  {
+    step: '02',
+    title: 'Diseño UI/UX & Arquitectura de Software',
+    desc: 'Construimos interfaces de alto contraste visual, tipografía expresiva, micro-interacciones suaves y un sistema de componentes estrictamente tipado.',
+  },
+  {
+    step: '03',
+    title: 'Desarrollo Riguroso, QA & Lanzamiento',
+    desc: 'Programación en Astro 5 y TypeScript, pruebas de rendimiento Core Web Vitals, hardening de seguridad y despliegue global en CDN con monitoreo activo.',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Cómo elijo el servicio adecuado para mi empresa?',
+    a: 'Si tu objetivo es captar leads para una oferta concreta, una Landing Page es la mejor opción. Si buscas vender productos físicos o digitales, una Tienda E-commerce. Para sistemas internos o productos digitales, Aplicaciones Web. Y para soporte continuo o automatización, Mantenimiento o Agentes de IA.',
+  },
+  {
+    q: '¿Cómo funciona el esquema de pago 40-30-30?',
+    a: 'Abonas el 40% al iniciar para asegurar tu fecha en el cronograma. El 30% se abona una vez presentado el diseño y la funcionalidad completa para tu aprobación. El 30% restante se liquida al publicar tu sitio en el dominio definitivo.',
+  },
+  {
+    q: '¿Puedo abonar con CBU, Mercado Pago o Criptomonedas?',
+    a: 'Sí. Aceptamos Transferencia bancaria directa (CBU/CVU), Mercado Pago (dinero en cuenta sin comisión) y Criptomonedas (USDT por red TRC20 o BEP20). Al seleccionar cualquier plan se abrirá la tarjeta interactiva con todos los datos de copia en 1 clic.',
+  },
+  {
+    q: '¿Los proyectos incluyen optimización SEO, AEO y GEO?',
+    a: 'Absolutamente. Todos nuestros desarrollos integran marcado semántico para Google, Schema.org enriquecido para motores de voz y respuestas directas (AEO), y archivos estructurados para indexación en motores de Inteligencia Artificial como Perplexity y SearchGPT (GEO).',
+  },
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<Base
+  title="Servicios de Desarrollo Web High-End & Software | Apex Web Studio"
+  description="Catálogo completo de servicios de arquitectura web: Landing pages de alta conversión, E-commerce ultrarrápidos, aplicaciones custom, agentes de IA y soporte evolutivo."
+>
+  <!-- FAQ Schema JSON-LD for AEO -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <!-- Hero Section -->
+  <section class="relative py-20 md:py-28 border-b border-[var(--border-color)] overflow-hidden bg-[var(--bg)]">
+    <!-- Ambient electric blue glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-500 font-mono text-xs font-semibold mb-6">
+          <Sparkles class="w-3.5 h-3.5" />
+          <span>Arquitectura Digital de Alto Rendimiento</span>
+        </div>
+
+        <h1 class="font-heading font-extrabold text-4xl sm:text-6xl text-[var(--text)] tracking-tight mb-6 leading-tight">
+          Soluciones Web & Software <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-sky-400">Sin Deuda Técnica</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-[var(--text-muted)] leading-relaxed mb-8">
+          Diseñamos y programamos plataformas web ultrarrápidas, expresivas y construidas bajo estándares estrictos de rendimiento (LCP &lt; 1.2s), accesibilidad WCAG 2.1 AA y optimización omnicanal (SEO / AEO / GEO).
+        </p>
+
+        <!-- Highlights Badges -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs font-mono text-[var(--text)]">
+            <Zap class="w-3.5 h-3.5 text-blue-500" />
+            <span>LCP &lt; 1.2s Garantizado</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs font-mono text-[var(--text)]">
+            <ShieldCheck class="w-3.5 h-3.5 text-blue-500" />
+            <span>Esquema 40-30-30</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] text-xs font-mono text-[var(--text)]">
+            <Search class="w-3.5 h-3.5 text-blue-500" />
+            <span>Optimización SEO / AEO / GEO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comprehensive Services Grid -->
+  <section class="py-24 border-b border-[var(--border-color)] bg-[var(--bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-16 text-left">
+        <Badge class="mb-4">Ecosistema de Soluciones</Badge>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)] tracking-tight mb-4">
+          Servicios Diseñados para Escalar tu Negocio
+        </h2>
+        <p class="text-base text-[var(--text-muted)] leading-relaxed">
+          Cada servicio se entrega listo para producción, con código 100% de tu propiedad, pruebas exhaustivas y documentación técnica.
+        </p>
+      </div>
+
+      <!-- Services Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {
+          services.map((service) => {
+            const meta = serviceMetadata[service.id] || {
+              roi: '+40%',
+              roiLabel: 'Eficiencia promedio comprobada',
+              stack: ['Astro 5', 'TypeScript', 'Tailwind CSS'],
+              entregables: ['Código tipado', 'Diseño responsive', 'SEO base'],
+              highlight: 'Solución optimizada para conversión',
+            };
+
+            return (
+              <div class="group relative rounded-3xl border border-[var(--border-color)] hover:border-blue-500/50 bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] p-8 transition-all duration-300 shadow-sm hover:shadow-[0_0_40px_-15px_rgba(59,130,246,0.25)] flex flex-col justify-between text-left">
+                <div>
+                  <!-- Header row: Price Badge & Tag -->
+                  <div class="flex items-center justify-between gap-3 mb-5">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-blue-500/25 bg-blue-500/10 font-mono text-xs font-bold text-blue-500">
+                      <span>Desde {service.data.planes.basico.precio}</span>
+                    </span>
+                    <span class="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
+                      {meta.highlight}
+                    </span>
+                  </div>
+
+                  <!-- Service Title -->
+                  <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[var(--text)] mb-3 tracking-tight group-hover:text-blue-500 transition-colors">
+                    {service.data.title}
+                  </h3>
+
+                  <!-- Description -->
+                  <p class="text-sm text-[var(--text-muted)] leading-relaxed mb-6">
+                    {service.data.description}
+                  </p>
+
+                  <!-- Expected ROI Callout Card -->
+                  <div class="mb-6 p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-500 flex-shrink-0">
+                      <TrendingUp class="w-6 h-6" />
+                    </div>
+                    <div>
+                      <span class="font-heading font-extrabold text-xl text-[var(--text)] block">
+                        {meta.roi}
+                      </span>
+                      <span class="text-xs text-[var(--text-muted)] font-medium">
+                        {meta.roiLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Deliverables List -->
+                  <div class="mb-6 pt-4 border-t border-[var(--border-color)]">
+                    <h4 class="font-heading font-semibold text-xs tracking-wider uppercase text-[var(--text)] mb-3 flex items-center gap-2">
+                      <Layers class="w-3.5 h-3.5 text-blue-500" />
+                      <span>Entregables Concretos:</span>
+                    </h4>
+                    <ul class="space-y-2">
+                      {meta.entregables.map((item) => (
+                        <li class="flex items-start gap-2.5 text-xs text-[var(--text)] font-mono">
+                          <CheckCircle2 class="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Associated Tech Stack Tags -->
+                  <div class="mb-6 pt-4 border-t border-[var(--border-color)]">
+                    <h4 class="font-heading font-semibold text-xs tracking-wider uppercase text-[var(--text)] mb-3 flex items-center gap-2">
+                      <Cpu class="w-3.5 h-3.5 text-blue-500" />
+                      <span>Tecnologías Asociadas:</span>
+                    </h4>
+                    <div class="flex flex-wrap gap-1.5">
+                      {meta.stack.map((tech) => (
+                        <span class="px-2.5 py-1 rounded-lg border border-[var(--border-color)] bg-[var(--badge-bg)] text-[11px] font-mono font-medium text-[var(--text)]">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="pt-6 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                  <a
+                    href={`/servicios/${service.id}`}
+                    class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] font-heading font-bold text-xs hover:opacity-90 transition-all shadow-sm"
+                  >
+                    <span>Ver Detalles & Planes</span>
+                    <ArrowRight class="w-4 h-4" />
+                  </a>
+
+                  <button
+                    type="button"
+                    class="btn-open-service-payment inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-blue-500/40 text-blue-500 hover:bg-blue-500/10 font-heading font-bold text-xs transition-all"
+                    data-service-title={service.data.title}
+                    data-plan-name="Pro (Recomendado)"
+                    data-plan-price={service.data.planes.pro.precio}
+                  >
+                    <span>Pagar Plan Pro ({service.data.planes.pro.precio})</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-Step Methodology Section -->
+  <section class="py-24 border-b border-[var(--border-color)] bg-[var(--bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="max-w-3xl mb-16">
+        <Badge class="mb-4">Ingeniería & Proceso</Badge>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)] tracking-tight mb-4">
+          Metodología de Trabajo en 3 Pasos
+        </h2>
+        <p class="text-base text-[var(--text-muted)] leading-relaxed">
+          Un proceso predecible, con hitos claros y comunicación constante para garantizar entregas en fecha sin sorpresas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+          methodologySteps.map((item) => (
+            <div class="relative p-8 rounded-3xl border border-[var(--border-color)] bg-[var(--card-bg)] flex flex-col justify-between hover:border-blue-500/40 transition-colors">
+              <div>
+                <span class="font-mono font-extrabold text-3xl text-blue-500 block mb-4">
+                  {item.step}
+                </span>
+                <h3 class="font-heading font-bold text-xl text-[var(--text)] mb-3">
+                  {item.title}
+                </h3>
+                <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Transparent 40-30-30 Scheme & Payment Guarantee -->
+  <section class="py-20 border-b border-[var(--border-color)] bg-[var(--bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="p-8 sm:p-12 rounded-3xl border border-blue-500/30 bg-gradient-to-br from-blue-950/20 to-[var(--card-bg)] shadow-[0_0_50px_-15px_rgba(59,130,246,0.15)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-3">
+            <CreditCard class="w-5 h-5 text-blue-500" />
+            <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-500">
+              Política de Transparencia Comercial
+            </span>
+          </div>
+          <h3 class="font-heading font-bold text-2xl sm:text-3xl text-[var(--text)] mb-4">
+            Esquema 40-30-30 Sin Letra Chica
+          </h3>
+          <p class="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed mb-4">
+            Dividimos el costo del proyecto en 3 hitos tangibles: <strong>40% al iniciar</strong>, <strong>30% al entregarte el diseño y funcionalidad completa</strong> para tu revisión, y <strong>30% final al desplegar</strong> en tu dominio de producción.
+          </p>
+          <p class="text-xs font-mono text-[var(--text-muted)]">
+            Aceptamos Transferencia bancaria (CBU/CVU), Mercado Pago y Cripto (USDT) sin cobro de comisiones intermediarias.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 w-full lg:w-auto flex-shrink-0">
+          <Button href="/#contacto" variant="primary" size="lg" class="text-center justify-center">
+            <span>Iniciar Consulta Gratuita</span>
+            <ArrowRight class="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Semantic FAQ Section for Services (AEO / GEO) -->
+  <section class="py-20 bg-[var(--bg)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="max-w-3xl mb-12">
+        <Badge class="mb-4">Consultas Frecuentes</Badge>
+        <h2 class="font-heading font-bold text-3xl sm:text-4xl text-[var(--text)] tracking-tight mb-4 flex items-center gap-3">
+          <HelpCircle class="w-8 h-8 text-blue-500" />
+          <span>Preguntas Frecuentes sobre Servicios</span>
+        </h2>
+        <p class="text-base text-[var(--text-muted)] leading-relaxed">
+          Respuestas directas sobre selección de planes, plazos, modalidades y formas de pago.
+        </p>
+      </div>
+
+      <div class="max-w-4xl space-y-4">
+        {
+          faqs.map((faq) => (
+            <Card hover={false} class="p-6">
+              <h3 class="font-heading font-bold text-base sm:text-lg text-[var(--text)] mb-2">
+                {faq.q}
+              </h3>
+              <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+                {faq.a}
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Reusable Accessible Payment Modal -->
+  <PaymentModal />
+</Base>
+
+<script>
+  interface WindowWithPaymentModal extends Window {
+    openPaymentModal?: (serviceTitle: string, planName: string, price?: string, target?: HTMLElement) => void;
+  }
+
+  function setupServicesPaymentButtons() {
+    const payButtons = document.querySelectorAll('.btn-open-service-payment');
+    payButtons.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const serviceTitle = target.getAttribute('data-service-title') || '';
+        const planName = target.getAttribute('data-plan-name') || 'Pro';
+        const planPrice = target.getAttribute('data-plan-price') || '';
+
+        const win = window as WindowWithPaymentModal;
+        if (typeof win.openPaymentModal === 'function') {
+          win.openPaymentModal(serviceTitle, planName, planPrice, target);
+        }
+      });
+    });
+  }
+
+  setupServicesPaymentButtons();
+  document.addEventListener('astro:after-swap', setupServicesPaymentButtons);
+</script>

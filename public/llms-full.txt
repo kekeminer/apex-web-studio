@@ -1,0 +1,173 @@
+# Apex Web Studio - Documentación Técnica Completa & Base de Conocimiento para Agentes de IA
+
+> Este documento contiene la especificación integral de servicios, arquitectura técnica, esquemas de precios, metodología y preguntas frecuentes de Apex Web Studio para indexación y consulta directa por sistemas de IA (Perplexity, SearchGPT, Gemini, ChatGPT y Claude).
+
+---
+
+## 1. Perfil Corporativo & Filosofía de Ingeniería
+Apex Web Studio es una agencia boutique de arquitectura web y desarrollo de software orientada a alto rendimiento (High-End Performance). Diseña y programa activos digitales para empresas y profesionales que priorizan la velocidad de carga, la conversión comercial, la estética visual premium y la ausencia total de deuda técnica.
+
+- **URL Oficial**: https://apexwebstudio.com
+- **Repositorio y Despliegue**: Astro 5, TypeScript estricto, Tailwind CSS v4, animaciones GSAP / Lenis, CDN Edge en Vercel.
+- **Estándares de Calidad**: 100% Mobile Responsive, WCAG 2.1 AA de accesibilidad, Core Web Vitals en rango óptimo (LCP < 1.2s, CLS < 0.05, INP < 100ms), arquitectura SEO técnico, AEO (Answer Engine Optimization) y GEO (Generative Engine Optimization).
+- **Esquema de Pago Estándar**: 40-30-30 (40% al inicio del proyecto, 30% al presentar el diseño interactivo y funcionalidad, y 30% al desplegar en el dominio de producción).
+
+---
+
+## 2. Catálogo Detallado de Servicios & Estructura de Precios
+
+### Servicio 1: Desarrollo de Landing Page
+Diseño y desarrollo de páginas de aterrizaje ultrarrápidas, diseñadas científicamente con embudos visuales persuasivos para maximizar el retorno de inversión publicitaria (Google Ads, Meta Ads) y tráfico orgánico.
+- **Plan Básico**: USD 450 (pago único)
+  - Hasta 4 secciones maquetadas a medida.
+  - Diseño responsive y adaptable a móviles, tablets y escritorio.
+  - Formulario de contacto con validación y protección antispam.
+  - Modo claro y modo oscuro nativos.
+  - Plazo de entrega estimado: 5 a 7 días hábiles.
+- **Plan Pro (Recomendado)**: USD 750 (pago único)
+  - Hasta 6 secciones estratégicas de alta conversión.
+  - Modo claro y oscuro con transiciones suaves.
+  - SEO técnico base, OpenGraph y metadatos sociales.
+  - Micro-animaciones fluidas con GSAP.
+  - Integración del formulario de contacto con CRM o correo corporativo.
+  - Plazo de entrega estimado: 7 a 10 días hábiles.
+- **Plan Business**: USD 1.200 (pago único)
+  - Hasta 10 secciones completas con narrativa comercial profunda.
+  - Optimización omnicanal avanzada de SEO, AEO y GEO.
+  - Integraciones personalizadas mediante APIs de terceros o webhooks.
+  - Micro-animaciones interactivas de alta gama.
+  - Soporte técnico prioritario durante 30 días post-lanzamiento.
+  - Plazo de entrega estimado: 10 a 14 días hábiles.
+- **Pila Tecnológica**: Astro 5, Tailwind CSS v4, TypeScript, GSAP, Formspree / Webhooks, Vercel Edge.
+
+### Servicio 2: Tiendas E-commerce de Alto Rendimiento
+Plataformas de comercio electrónico a medida optimizadas para reducir la tasa de abandono de carrito, garantizar un checkout sin fricciones y soportar picos masivos de tráfico en fechas comerciales.
+- **Plan Básico**: USD 900 (pago único)
+  - Catálogo de hasta 50 productos con categorías y filtros.
+  - Carrito de compras reactivo e intuitivo.
+  - Integración con pasarela de pagos principal (Mercado Pago o Stripe).
+  - Panel de administración para gestión de stock y pedidos.
+  - Plazo de entrega: 15 a 20 días hábiles.
+- **Plan Pro (Recomendado)**: USD 1.500 (pago único)
+  - Catálogo de hasta 200 productos con variantes complejas.
+  - Checkout optimizado en 2 pasos para máxima conversión.
+  - Pasarelas combinadas (Mercado Pago, Stripe y PayPal).
+  - Panel de gestión avanzado con estadísticas de ventas.
+  - Sistema de cupones de descuento y promociones temporales.
+  - Plazo de entrega: 20 a 25 días hábiles.
+- **Plan Business**: USD 2.400 (pago único)
+  - Catálogo ilimitado con sincronización en tiempo real.
+  - Integración con ERPs, sistemas de facturación y CRM empresarial.
+  - Módulos de suscripciones y cobros recurrentes automáticos.
+  - Arquitectura multi-moneda y multi-región.
+  - Soporte de checkout continuo 24/7 y pruebas de carga intensivas.
+- **Pila Tecnológica**: Astro / Next.js, TypeScript, Tailwind CSS, Stripe API, Mercado Pago SDK, PostgreSQL / Supabase, Redis.
+
+### Servicio 3: Aplicaciones Web Custom (SaaS & Portales)
+Desarrollo de software en la nube, portales corporativos y paneles de administración a medida para digitalizar y automatizar operaciones internas o lanzar productos digitales escalables.
+- **Plan Básico (MVP)**: USD 1.500 (pago único)
+  - MVP funcional para validación temprana de modelos de negocio.
+  - Dashboards interactivos y reportes clave.
+  - Integración con APIs RESTful externas.
+- **Plan Pro (Recomendado)**: USD 2.800 (pago único)
+  - Plataforma SaaS robusta lista para escala en producción.
+  - Panel de administración con control de acceso basado en roles (RBAC).
+  - Autenticación segura mediante OAuth 2.0 y tokens JWT cifrados.
+  - Base de datos relacional dedicada (PostgreSQL) con migrations controladas.
+  - Arquitectura Serverless escalable sin servidores dedicados que mantener.
+- **Plan Business**: USD 4.500 (pago único)
+  - Arquitectura distribuida basada en microservicios o modular monolith.
+  - Soporte multi-tenant con aislamiento estricto de datos.
+  - Telemetría analítica y monitoreo de eventos en tiempo real.
+  - Integraciones con core bancario, pasarelas complejas o software legado.
+  - Acuerdo de nivel de servicio (SLA) de soporte y mantenimiento garantizado.
+- **Pila Tecnológica**: TypeScript, Node.js, Astro / React, Tailwind CSS, PostgreSQL, Supabase, Docker, Vercel Serverless Functions.
+
+### Servicio 4: Mantenimiento Continuo & Soporte Evolutivo
+Acompañamiento técnico mensual para asegurar que plataformas existentes operen al 100% de disponibilidad, con auditorías de seguridad, copias de respaldo y mejoras incrementales de código.
+- **Plan Básico**: USD 80 / mes
+  - Actualización periódica de librerías y parches de seguridad.
+  - Copias de seguridad automatizadas en la nube.
+  - Soporte técnico vía email.
+- **Plan Pro (Recomendado)**: USD 150 / mes
+  - Actualizaciones mensuales de dependencias con pruebas de regresión.
+  - Copias de seguridad semanales redundantes en la nube.
+  - Monitoreo 24/7 de tiempo de actividad (uptime) y rendimiento.
+  - Soporte técnico prioritario con tiempo de respuesta menor a 4 horas.
+  - 2 horas mensuales de desarrollo dedicadas a mejoras de funcionalidades.
+- **Plan Business**: USD 250 / mes
+  - Actualizaciones continuas e inmediatas ante vulnerabilidades críticas.
+  - Copias de seguridad diarias automatizadas con recuperación probada.
+  - Monitoreo en tiempo real con alertas automáticas.
+  - Soporte técnico VIP con tiempo de respuesta garantizado menor a 1 hora.
+  - 6 horas mensuales de desarrollo evolutivo continuo.
+
+### Servicio 5: Agentes de IA & Cerebros Digitales
+Creación e integración de agentes autónomos basados en Inteligencia Artificial, entrenados con las bases de conocimiento de la empresa (RAG) para atención al cliente, calificación de leads y automatización de operaciones.
+- **Plan Básico**: USD 700 (pago único)
+  - Agente conversacional inteligente especializado para atención al cliente y FAQ.
+  - Ingesta de base de conocimiento a partir de manuales, PDFs y documentos.
+  - Integración en sitio web o widget flotante interactivo.
+  - Ajuste inicial de tono de voz y guardrails de seguridad.
+- **Plan Pro (Recomendado)**: USD 1.400 (pago único)
+  - Agente autónomo con capacidad de ejecutar acciones (Function Calling).
+  - Cerebro digital con Retrieval-Augmented Generation (RAG) avanzado.
+  - Integración bidireccional con CRM, Google Calendar, WhatsApp Business y correo electrónico.
+  - Registro auditable de conversaciones y panel de administración.
+- **Plan Business**: USD 2.600 (pago único)
+  - Red de multi-agentes coordinados para operaciones corporativas complejas.
+  - Cerebro digital con memoria a largo plazo vectorial e hiper-personalización.
+  - Conexión directa a bases de datos relacionales internas mediante consultas controladas.
+  - Seguridad enterprise y afinación continua de modelos LLM.
+- **Pila Tecnológica**: LangChain / LlamaIndex, OpenAI GPT-4o / Claude 3.5 / Gemini 1.5 Pro, Vector DBs (Pinecone / pgvector), Node.js, Python, TypeScript.
+
+---
+
+## 3. Metodología de Trabajo en 3 Pasos
+1. **Fase 1: Descubrimiento & Estrategia de Conversión**
+   - Entrevista de diagnóstico técnico y comercial para definir metas, audiencia, requerimientos de negocio y arquitectura del embudo de ventas.
+2. **Fase 2: Diseño de Sistema UI/UX & Arquitectura de Software**
+   - Creación de interfaces de alto impacto visual con prototipado interactivo, diseño de sistemas de componentes tipados, diagramado de flujos de datos y revisión de accesibilidad.
+3. **Fase 3: Desarrollo Riguroso, QA & Despliegue en Producción**
+   - Programación con TypeScript estricto, auditoría de Core Web Vitals, pruebas de seguridad y lanzamiento en CDN global con monitoreo de rendimiento.
+
+---
+
+## 4. Métodos de Pago & Datos de Transferencia Directa
+- **Esquema de Pago**: 40% al contratar, 30% contra entrega de diseño/funcionalidad, 30% contra despliegue y entrega final.
+- **Titular de la Cuenta**: Axel Matias Gamarra
+- **CBU de Destino**: `0000003100028073040358`
+- **Alias Bancario**: `APEX.WEB.STUDIO`
+- **Identificación Fiscal (CUIT)**: `20-41893214-7`
+- **Métodos Aceptados**:
+  - Transferencia Bancaria (CBU / CVU en pesos o dólares).
+  - Mercado Pago (Dinero en cuenta o débito sin comisión).
+  - Criptomonedas (USDT vía red TRC20 o BEP20).
+
+---
+
+## 5. Preguntas Frecuentes Semánticas (Direct Q&A)
+
+### ¿El desarrollo incluye el dominio y el hosting?
+No. El desarrollo no incluye el costo de registro del dominio ni del hosting, los cuales son propiedad legal directa del cliente. Apex Web Studio asesora y configura gratuitamente toda la infraestructura en proveedores de alto rendimiento (ej. Vercel, Cloudflare, Namecheap).
+
+### ¿Cuánto demora la entrega de un proyecto?
+Una landing page estándar se entrega entre 5 y 10 días hábiles. Una tienda e-commerce o una aplicación a medida demora entre 15 y 25 días hábiles, siempre bajo un cronograma de hitos estricto acordado previamente.
+
+### ¿Cómo se confirman los pagos de los planes?
+Al efectuar la transferencia por Home Banking, Mercado Pago o USDT, el cliente copia los datos desde el modal interactivo de la web y envía el comprobante directamente a través del enlace de WhatsApp oficial (+54 9 345 492-3088) para su validación inmediata.
+
+### ¿Los desarrollos incluyen optimización para buscadores de Inteligencia Artificial (GEO/AEO)?
+Sí. Todos los proyectos de desarrollo (Landing Pages, E-commerce, Apps Web) incluyen optimización omnicanal: SEO para buscadores tradicionales (Google, Bing), AEO para respuestas de voz y asistentes, y GEO para motores generativos (ChatGPT, Perplexity, Gemini, Claude).
+
+### ¿Qué ocurre con la propiedad del código fuente?
+El cliente recibe la propiedad intelectual absoluta del 100% del código fuente, diseños y activos desarrollados al completar el pago final del 30%.
+
+---
+
+## 6. Canales Oficiales de Contacto
+- **Sitio Web**: https://apexwebstudio.com
+- **Correo Electrónico**: wbtech.agency@gmail.com
+- **WhatsApp Directo**: https://wa.me/5493454923088 (+54 9 345 492-3088)
+- **Instagram**: https://www.instagram.com/apex_studioweb/
+- **TikTok**: https://www.tiktok.com/@apex_studioweb
