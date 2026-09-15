@@ -12,7 +12,6 @@ import {
   Check,
   CreditCard,
   Search,
-  Sparkles,
   TrendingUp,
   Layers,
   Cpu,
@@ -147,10 +146,7 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
   )}
 
   <!-- Hero Section of Service -->
-  <section class="relative py-16 md:py-24 border-b border-[var(--border-color)] overflow-hidden bg-[var(--bg)]">
-    <!-- Ambient subtle electric blue glow -->
-    <div class="absolute -top-20 right-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+  <section class="relative py-16 md:py-24 border-b border-[var(--border-color)] bg-[var(--bg)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left relative z-10">
       <a
         href="/servicios"
@@ -162,11 +158,6 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-8">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-500 font-mono text-xs font-semibold mb-4">
-            <Sparkles class="w-3.5 h-3.5" />
-            <span>Servicio Especializado High-End</span>
-          </div>
-
           <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--text)] tracking-tight mb-6 leading-tight">
             {title}
           </h1>
@@ -176,7 +167,7 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
           </p>
 
           <div class="flex flex-wrap items-center gap-4">
-            <Button href="#planes" variant="primary" size="lg" class="shadow-md">
+            <Button href="#planes" variant="primary" size="lg" class="shadow-sm">
               <span>Ver Planes y Tarifas</span>
               <ArrowRight class="w-5 h-5" />
             </Button>
@@ -189,13 +180,13 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
           </div>
         </div>
 
-        <!-- Right Column: Expected ROI Card -->
+        <!-- Right Column: Expected ROI Card (Sober, Matte, No Glow) -->
         <div class="lg:col-span-4 w-full">
-          <div class="p-6 sm:p-8 rounded-3xl border border-blue-500/30 bg-[var(--card-bg)] shadow-[0_0_40px_-15px_rgba(59,130,246,0.25)] relative overflow-hidden">
-            <div class="w-12 h-12 rounded-2xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-500 mb-4">
+          <div class="p-6 sm:p-8 rounded-3xl border border-[var(--border-color)] bg-[var(--card-bg)] relative overflow-hidden">
+            <div class="w-12 h-12 rounded-2xl bg-[var(--badge-bg)] border border-[var(--border-color)] flex items-center justify-center text-blue-500 mb-4">
               <TrendingUp class="w-6 h-6" />
             </div>
-            <span class="text-xs font-mono uppercase tracking-widest text-blue-500 block mb-1">
+            <span class="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)] block mb-1">
               Retorno de Inversión Estimado
             </span>
             <h3 class="font-heading font-extrabold text-3xl sm:text-4xl text-[var(--text)] mb-3">
@@ -285,7 +276,7 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
             <div
               class={`rounded-3xl flex flex-col justify-between relative p-8 transition-all duration-300 ${
                 plan.recomendado
-                  ? 'border-2 border-blue-500 bg-[var(--card-hover-bg)] shadow-[0_0_50px_-15px_rgba(59,130,246,0.3)] scale-[1.02]'
+                  ? 'border-2 border-blue-500 bg-[var(--card-hover-bg)]'
                   : 'border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-blue-500/30'
               }`}
             >
@@ -330,7 +321,7 @@ const serviceFaqJsonLd = faq && faq.length > 0 ? {
                 type="button"
                 class={`btn-pay-plan w-full py-3.5 px-6 rounded-xl font-heading font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
                   plan.recomendado
-                    ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_25px_rgba(59,130,246,0.35)] hover:scale-[1.02] active:scale-[0.98]'
+                    ? 'bg-blue-600 hover:bg-blue-500 text-white hover:scale-[1.01] active:scale-[0.99]'
                     : 'border border-[var(--border-color)] hover:border-blue-500/50 bg-[var(--bg)] text-[var(--text)] hover:bg-[var(--card-hover-bg)]'
                 }`}
                 data-service-title={title}

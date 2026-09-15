@@ -142,7 +142,6 @@ Creación e integración de agentes autónomos basados en Inteligencia Artificia
 - **Métodos Aceptados**:
   - Transferencia Bancaria (CBU / CVU en pesos o dólares).
   - Mercado Pago (Dinero en cuenta o débito sin comisión).
-  - Criptomonedas (USDT vía red TRC20 o BEP20).
 
 ---
 
@@ -155,7 +154,7 @@ No. El desarrollo no incluye el costo de registro del dominio ni del hosting, lo
 Una landing page estándar se entrega entre 5 y 10 días hábiles. Una tienda e-commerce o una aplicación a medida demora entre 15 y 25 días hábiles, siempre bajo un cronograma de hitos estricto acordado previamente.
 
 ### ¿Cómo se confirman los pagos de los planes?
-Al efectuar la transferencia por Home Banking, Mercado Pago o USDT, el cliente copia los datos desde el modal interactivo de la web y envía el comprobante directamente a través del enlace de WhatsApp oficial (+54 9 345 492-3088) para su validación inmediata.
+Al efectuar la transferencia por Home Banking o Mercado Pago, el cliente copia los datos desde el modal interactivo de la web y envía el comprobante directamente a través del enlace de WhatsApp oficial (+54 9 345 492-3088) para su validación inmediata.
 
 ### ¿Los desarrollos incluyen optimización para buscadores de Inteligencia Artificial (GEO/AEO)?
 Sí. Todos los proyectos de desarrollo (Landing Pages, E-commerce, Apps Web) incluyen optimización omnicanal: SEO para buscadores tradicionales (Google, Bing), AEO para respuestas de voz y asistentes, y GEO para motores generativos (ChatGPT, Perplexity, Gemini, Claude).

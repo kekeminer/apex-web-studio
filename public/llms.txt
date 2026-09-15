@@ -33,7 +33,7 @@ Apex Web Studio desarrolla soluciones digitales con código limpio en TypeScript
 
 ## Métodos de Pago
 - Esquema 40-30-30 (40% al iniciar, 30% a la entrega funcional, 30% al desplegar en producción).
-- Métodos aceptados: Transferencia Bancaria (CBU/CVU), Mercado Pago y Cripto (USDT TRC20/BEP20).
+- Métodos aceptados: Transferencia Bancaria (CBU/CVU) y Mercado Pago.
 
 ## Contacto Oficial
 - **Sitio Web**: https://apexwebstudio.com

@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <style>
-    .bg { fill: transparent; }
-    .mark { fill: #0A1633; }
-    @media (prefers-color-scheme: dark) {
-      .mark { fill: #FFFFFF; }
-    }
-  </style>
-  <rect width="512" height="512" rx="96" class="bg"/>
-  <path class="mark" d="M256 48 L432 432 H340 L256 264 L172 432 H80 L256 48 Z" />
-  <path class="mark" fill-rule="evenodd" clip-rule="evenodd" d="M256 160 L310 270 H202 L256 160 Z" />
-  <rect class="mark" x="192" y="448" width="128" height="16" rx="8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0A0F1D" />
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="8" />
+  <!-- Apex Peak Stylized Chevron / A Mark -->
+  <path d="M256 80 L420 400 H328 L256 250 L184 400 H92 L256 80 Z" fill="#3B82F6" />
+  <path d="M256 160 L320 310 H192 L256 160 Z" fill="#0A0F1D" />
+  <path d="M256 200 L292 284 H220 L256 200 Z" fill="#FFFFFF" />
+  <rect x="176" y="420" width="160" height="24" rx="12" fill="#3B82F6" />
 </svg>
